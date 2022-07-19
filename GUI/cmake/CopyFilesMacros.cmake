@@ -1,0 +1,21 @@
+#Copy files with specific extention 
+macro(copy_files srcDir destDir ext)
+    message(STATUS "Copying files with ${ext} from ${srcDir} to ${destDir}")
+    make_directory(${destDir})
+    file(GLOB templateFiles ${srcDir}/*${ext})
+    foreach(templateFile ${templateFiles})
+        file(COPY ${templateFile} DESTINATION ${destDir})
+    endforeach(templateFile)
+endmacro(copy_files)
+
+#Copy files from directory A to directory B 
+macro (copy_directory srcDir destDir)
+	message(STATUS "Copying ${srcDir} directory to ${destDir} with all files.")
+	if (NOT EXISTS "${destDir}")
+		make_directory(${destDir})
+	endif()
+	file(GLOB  templateFiles ${srcDir})
+    foreach(templateFile ${templateFiles})
+        file(COPY ${templateFile} DESTINATION ${destDir})
+    endforeach(templateFile)
+endmacro(copy_directory)

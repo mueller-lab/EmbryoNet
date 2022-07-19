@@ -1,0 +1,21 @@
+if (MSVC)
+	set(ENV{BOOST_ROOT} $ENV{CVFN_DEPS}/boost)
+	if(CMAKE_SIZEOF_VOID_P EQUAL 8)
+		set(Boost_LIBRARY_DIR  $ENV{BOOST_ROOT}/stage64/lib)
+	elseif(CMAKE_SIZEOF_VOID_P EQUAL 4)
+		set(Boost_LIBRARY_DIR  $ENV{BOOST_ROOT}/stage32/lib)
+	endif()
+else()
+	set(Boost_INCLUDE_DIR  $ENV{BOOST_ROOT}/include)
+	set(Boost_LIBRARY_DIR  $ENV{BOOST_ROOT}/lib)
+endif()
+
+if (MSVC)
+    set(Boost_USE_STATIC_LIBS ON)
+    set(Boost_USE_MULTITHREADED ON)
+endif()
+
+find_package(Boost 1.72 REQUIRED COMPONENTS system filesystem regex thread program_options)
+
+set(Boost_LIBRARIES ${Boost_LIBRARIES})
+set(Boost_INCLUDE_DIRS ${Boost_INCLUDE_DIRS})

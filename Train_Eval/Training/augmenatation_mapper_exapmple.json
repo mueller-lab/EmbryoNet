@@ -1,0 +1,318 @@
+[
+    {
+        "epoch": 0,
+        "mappers": [
+            {
+                "name": "rotate",
+                "range": [
+                    0,
+                    1,
+                    2
+                ]
+            },
+            {
+                "name": "flip",
+                "range": [
+                    1,
+                    0,
+                    -1
+                ]
+            }
+        ]
+    },
+    {
+        "epoch": 1,
+        "mappers": [
+            {
+                "name": "small_rotate",
+                "range": [
+                    0,
+                    45,
+                    45
+                ]
+            }
+        ]
+    },
+    {
+        "epoch": 2,
+        "mappers": [
+            {
+                "name": "small_rotate",
+                "range": [
+                    30,
+                    60,
+                    15
+                ]
+            }
+        ]
+    },
+    {
+        "epoch": 3,
+        "mappers": [
+            {
+                "name": "small_rotate",
+                "range": [
+                    15,
+                    75,
+                    15
+                ]
+            }
+        ]
+    },
+    {
+        "epoch": 4,
+        "mappers": [
+            {
+                "name": "small_rotate",
+                "range": [
+                    5,
+                    85,
+                    5
+                ]
+            }
+        ]
+    },
+    {
+        "epoch": 5,
+        "mappers": [
+            {
+                "name": "small_rotate",
+                "range": [
+                    0,
+                    90,
+                    1
+                ]
+            }
+        ]
+    },
+    {
+        "epoch": 6,
+        "mappers": [
+            {
+                "name": "crop",
+                "range": [
+                    0,
+                    10,
+                    1
+                ]
+            }
+        ]
+    },
+    {
+        "epoch": 7,
+        "mappers": [
+            {
+                "name": "crop",
+                "range": [
+                    10,
+                    20,
+                    1
+                ]
+            }
+        ]
+    },
+    {
+        "epoch": 10,
+        "mappers": [
+            {
+                "name": "crop",
+                "range": [
+                    20,
+                    30,
+                    1
+                ]
+            }
+        ]
+    },
+    {
+        "epoch": 12,
+        "mappers": [
+            {
+                "name": "gamma",
+                "range": [
+                    0,
+                    10,
+                    1
+                ]
+            }
+        ]
+    },
+    {
+        "epoch": 14,
+        "mappers": [
+            {
+                "name": "gamma",
+                "range": [
+                    10,
+                    20,
+                    1
+                ]
+            }
+        ]
+    },
+    {
+        "epoch": 16,
+        "mappers": [
+            {
+                "name": "salt_and_pepper",
+                "range": [
+                    0.98
+                ]
+            }
+        ]
+    },
+    {
+        "epoch": 18,
+        "mappers": [
+            {
+                "name": "randomBrightnessContrast",
+                "range": [
+                    0
+                ]
+            }
+        ]
+    },
+    {
+        "epoch": 20,
+        "mappers": [
+            {
+                "name": "randomBrightnessContrast",
+                "range": [
+                    1
+                ]
+            }
+        ]
+    },
+    {
+        "epoch": 22,
+        "mappers": [
+            {
+                "name": "sharpen",
+                "range": [
+                    0
+                ]
+            }
+        ]
+    },
+    {
+        "epoch": 24,
+        "mappers": [
+            {
+                "name": "sharpen",
+                "range": [
+                    1
+                ]
+            }
+        ]
+    },
+    {
+        "epoch": 26,
+        "mappers": [
+            {
+                "name": "sharpen",
+                "range": [
+                    2
+                ]
+            }
+        ]
+    },
+    {
+        "epoch": 30,
+        "mappers": [
+            {
+                "name": "motionblur",
+                "range": [
+                    0
+                ]
+            }
+        ]
+    },
+    {
+        "epoch": 32,
+        "mappers": [
+            {
+                "name": "motionblur",
+                "range": [
+                    1
+                ]
+            }
+        ]
+    },
+    {
+        "epoch": 34,
+        "mappers": [
+            {
+                "name": "motionblur",
+                "range": [
+                    2
+                ]
+            }
+        ]
+    },
+    {
+        "epoch": 38,
+        "mappers": [
+            {
+                "name": "GridDistortion",
+                "range": [
+                    0
+                ]
+            }
+        ]
+    },
+    {
+        "epoch": 40,
+        "mappers": [
+            {
+                "name": "GridDistortion",
+                "range": [
+                    1
+                ]
+            }
+        ]
+    },
+    {
+        "epoch": 42,
+        "mappers": [
+            {
+                "name": "GridDistortion",
+                "range": [
+                    1
+                ]
+            }
+        ]
+    },
+    {
+        "epoch": 44,
+        "mappers": [
+            {
+                "name": "OpticalDistortion",
+                "range": [
+                    0
+                ]
+            }
+        ]
+    },
+    {
+        "epoch": 48,
+        "mappers": [
+            {
+                "name": "OpticalDistortion",
+                "range": [
+                    1
+                ]
+            }
+        ]
+    },
+    {
+        "epoch": 50,
+        "mappers": [
+            {
+                "name": "OpticalDistortion",
+                "range": [
+                    1
+                ]
+            }
+        ]
+    }
+]

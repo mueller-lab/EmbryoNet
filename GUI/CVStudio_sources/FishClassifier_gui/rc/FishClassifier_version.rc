@@ -1,0 +1,23 @@
+#include <winver.h>
+#define VER_FILEVERSION             2021,0725,1,11
+#define VER_CompanyName             "Computer Vision Studio"
+#define VER_PRODUCTNAME_STR         "Fish Classifier"
+#define VER_COPYRIGHT_STR           "Copyright (C) 2021 Matvey Safroshkin,"
+VS_VERSION_INFO VERSIONINFO
+FILEVERSION     VER_FILEVERSION
+PRODUCTVERSION  VER_FILEVERSION
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904E4"
+        BEGIN
+            VALUE "CompanyName",      VER_CompanyName
+            VALUE "FileVersion",      VER_FILEVERSION
+            VALUE "ProductName",      VER_PRODUCTNAME_STR
+            VALUE "ProductVersion",   VER_FILEVERSION
+            VALUE "LegalCopyright",   "Copyright (C) 2021 Matvey Safroshkin,"
+ 
+        END
+    END
+
+END

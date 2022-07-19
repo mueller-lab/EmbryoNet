@@ -1,0 +1,193 @@
+{
+    "Source": {
+        "type": "Path",
+        "folder": "F:/Test/imagesimages/"
+    },
+    "Algorithm": {
+        "type": "EmbryoClassifer",
+        "classifier": {
+            "path_to_net": "F:/Configs/EmbryoClassifier_v_1_GPU.onnx",
+            "name": "Fish",
+            "type": "OpenCV",
+            "engine": "ONNX",
+            "run": false,
+            "outputClasses": 5,
+            "height": 224,
+            "width": 224,
+            "minus": [
+                0.485,
+                0.456,
+                0.406
+            ],
+            "divide": [
+                0.229,
+                0.224,
+                0.225
+            ]
+        },
+        "tracker": {
+            "detector": {
+                "name": "FishDetector",
+                "engine": "CPU",
+                "fx": 0.25,
+                "fy": 0.25,
+                "hough": {
+                    "method": "HOUGH_GRADIENT",
+                    "dp": 1,
+                    "minDist": 20,
+                    "param1": 50,
+                    "param2": 30,
+                    "minRadius": 40,
+                    "maxRadius": 55
+                }
+            }
+        },
+        "logic": {
+            "transactions": [
+                [
+                    "UNKNOWN",
+                    "BMP",
+                    "BOOM"
+                ],
+                [
+                    "UNKNOWN",
+                    "NODAL",
+                    "BOOM"
+                ],
+                [
+                    "UNKNOWN",
+                    "BOOM"
+                ],
+                [
+                    "UNKNOWN",
+                    "NORMAL"
+                ]
+            ]
+        }
+    },
+    "ResultRepresenter": [
+        {
+            "type": "labeler",
+            "experiment_folder": "F:/Test",
+            "classes": [
+                {
+                    "id": 0,
+                    "name": "BMP",
+                    "color": [
+                        255,
+                        0,
+                        0
+                    ]
+                },
+                {
+                    "id": 1,
+                    "name": "NODAL",
+                    "color": [
+                        0,
+                        0,
+                        255
+                    ]
+                },
+                {
+                    "id": 2,
+                    "name": "NORMAL",
+                    "color": [
+                        0,
+                        255,
+                        0
+                    ]
+                },
+                {
+                    "id": 3,
+                    "name": "UNKNOWN",
+                    "color": [
+                        0,
+                        0,
+                        0
+                    ]
+                },
+                {
+                    "id": 4,
+                    "name": "CUT",
+                    "color": [
+                        255,
+                        255,
+                        255
+                    ]
+                },
+                {
+                    "id": 5,
+                    "name": "BOOM",
+                    "color": [
+                        255,
+                        0,
+                        255
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "imshow",
+            "name": "result",
+            "width": 1024,
+            "height": 1024,
+            "waitKey": 10
+        }
+    ],
+    "classes": [
+        {
+            "id": 0,
+            "name": "BMP",
+            "color": [
+                255,
+                0,
+                0
+            ]
+        },
+        {
+            "id": 1,
+            "name": "NODAL",
+            "color": [
+                0,
+                0,
+                255
+            ]
+        },
+        {
+            "id": 2,
+            "name": "NORMAL",
+            "color": [
+                0,
+                255,
+                0
+            ]
+        },
+        {
+            "id": 3,
+            "name": "UNKNOWN",
+            "color": [
+                0,
+                0,
+                0
+            ]
+        },
+        {
+            "id": 4,
+            "name": "CUT",
+            "color": [
+                255,
+                255,
+                255
+            ]
+        },
+        {
+            "id": 5,
+            "name": "BOOM",
+            "color": [
+                255,
+                0,
+                255
+            ]
+        }
+    ]
+}
