@@ -55,7 +55,7 @@ def main():
     parser.add_argument('-H', type=int, default=224, help = "network input height")
     parser.add_argument('-p', "--polynom", type=int, default=5, help = "smoothing polynom  power")
     parser.add_argument("-vc", "--visualize_classes", type = int,nargs="+", required=True, help = "classes to visualize activation from")
-    parser.add_argument("-nc", "--classesNames",  nargs="+", default=["BMP", "BMP 75", "BMP 50", "BMP 25", "NODAL", "NODAL 75", "NODAL 50", "NODAL 25", "NORMAL", "UNKNOWN", "BOOM",
+    parser.add_argument("-nc", "--classesNames",  nargs="+", default=["BMP", "BMP 60", "BMP 30", "NODAL", "NODAL 60", "NODAL 30", "NORMAL", "UNKNOWN", "BOOM",
                                                          "WNT", "FGF", "SHH", "PCP","RA"])
 
 
@@ -166,7 +166,7 @@ def main():
                 continue
 
             os.listdir(output_path)
-#            os.makedirs(os.path.join(os.path.join(output_path, str(track_id))), exist_ok=True)
+            os.makedirs(os.path.join(os.path.join(output_path, str(track_id))), exist_ok=True)
 
             strindex = str(index)
             while len(strindex) < 4:
@@ -177,8 +177,8 @@ def main():
             img = np.ones((height+3*shift, width+2*shift, 3)) * 255
 
             rows, cols, _ = embryo.shape
-            font                   = cv2.FONT_HERSHEY_COMPLEX_SMALL
-            fontScale              = 1
+            font                   = cv2.FONT_HERSHEY_COMPLEX_SMALL 
+            fontScale              = 1.1
             fontColor              = (0,0,0)
             lineType               = 1
 
@@ -227,7 +227,12 @@ def main():
 #            print("Limits of the output after resize: ", np.min(embryo_cam), ", ", np.max(embryo_cam))
 
                 heatmap = cv2.applyColorMap(cv2.resize(embryo_cam, (embryo_width, embryo_height)), cv2.COLORMAP_JET)
-                result = heatmap * 0.3 + original_embryo * 0.5
+                
+                #print("Activation maps : ", np.min(heatmap), ", ", np.max(heatmap))
+                #print("original_embryo : ", np.min(original_embryo), ", ", np.max(original_embryo))
+               
+                
+                result = heatmap * 0.65 + original_embryo * 0.35
                 count = count + 1
  #               print("map size : ", result.shape, " -> shift : ", count * embryo_width + shift)  
                 img = combine(img, result, count * embryo_width + shift, 2*shift+dY)
@@ -277,8 +282,9 @@ def main():
  #           label=args.experiment_name
  #           lwidth, lheight, baseline = size(label,font,fontScale,lineType)
  #           cv2.putText(img,label,(width // 2 - lwidth // 2, y+lheight), font, fontScale, fontColor,lineType,cv2.LINE_AA)
-            cv2.imwrite(os.path.join(output_path, strindex + ".png"), img)
-#           cv2.imwrite(os.path.join(output_path, str(track_id), strindex + ".png"), img)
+#            cv2.imwrite(os.path.join(output_path, strindex + ".png"), img)
+            cv2.imwrite(os.path.join(output_path, str(track_id), strindex + ".png"), img)
+
 
 
 if (__name__=="__main__"):

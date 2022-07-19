@@ -38,10 +38,16 @@ def returnCAM(feature_conv, weight_softmax, class_idx, minVal, maxVal):
     bz, nc, h, w = feature_conv.shape
     cam = weight_softmax[class_idx].dot(feature_conv.reshape((nc, h*w)))
     cam = cam.reshape(h, w)
-
+    
     limit = 2.0*np.max([np.abs(minVal), np.abs(maxVal)])
-    cam_img = cam / limit
+    cam_img = cam / limit;   # activation maps normalized to [-0.5:0.5]
+ #   print("Activation maps from: ", np.min(cam_img), ", ", np.max(cam_img))
 #    cam_img = cam_img * prob
+    img_sign = np.sign(cam_img) #cam_img / np.abs(cam_img)
+    img_sqrt = np.sqrt(np.abs(cam_img))
+    cam_img = img_sign * img_sqrt      # activation mapped to [-sqrt(0.5):sqrt(0.5)]
+    cam_img = cam_img / ( 2.0 * np.sqrt(0.5))
+ #   print("Activation maps to : ", np.min(cam_img), ", ", np.max(cam_img))
     cam_img = cam_img + 0.5
     
     cam_img = np.uint8(255 * cam_img)

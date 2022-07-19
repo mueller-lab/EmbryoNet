@@ -1,0 +1,12 @@
+__pycache__
+build/*
+installerScripts/Output/*
+installerScripts/output/*
+GUI/build
+GUI/installerScripts/Output/*
+Train_Eval/Sashas_code
+Train_Eval/Lib
+Train_Eval/etc
+Train_Eval/Scripts
+Train_Eval/share
+Train_Eval/pyvenv.cfg
