@@ -19,7 +19,7 @@ def main():
     parser.add_argument('--labeler_name', "-ln",type=str)
     parser.add_argument('--updated_annotation_name',"-uan", type=str)
     parser.add_argument('--start',"-st", type=int, default=640)
-    parser.add_argument('--ignore_class', "-ic",  nargs="+", default=["NORMAL", "BOOM", "CUT"])
+    parser.add_argument('--ignore_class', "-ic",  nargs="+", default=["CUT", "BOOM"] )
     parser.add_argument('--timestamp_prefix', "-tp", type = str, default= "LO")
     args = parser.parse_args()
     ignore_class_names = [ignore_class.upper() for ignore_class in args.ignore_class]
@@ -31,13 +31,15 @@ def main():
         updated_annotation_name += "_json"
     experiments = [f for f in os.listdir(path_to_session) if os.path.isdir(os.path.join(path_to_session, f))]
 
-  
+    #print("Excluding classes : ", args.ignore_class)
     for experiment in experiments:
         path_to_experiment = os.path.join(path_to_session, experiment)
         path_to_json_folder = os.path.join(path_to_experiment, labeler_name)
 
         if os.path.isdir(path_to_experiment) and os.path.exists(path_to_json_folder):
             
+            print("experiment : ", experiment)
+            # get current classes and severity
             allIds = []
             allages = [] 
     
@@ -79,15 +81,17 @@ def main():
                 allSev = []
                 for  t in range (0,T):
                     embryoClass = ClassPerEmbryo[embryoId-1][t]
-                    if embryoClass not in (ignore_class_names + ["UNKNOWN"]):
+                    if embryoClass not in (ignore_class_names + ["UNKNOWN"] + ["BOOM"]):
                         allClass.append(embryoClass)
                         allSev.append(SeverPerEmbryo[embryoId-1][t])
-                if len(np.unique(allClass)) > 0:       
+                        
+                if len(np.unique(allClass)) == 1:       
                     ClassEmbryo[embryoId-1] = np.unique(allClass)[0]
                     SeverEmbryo[embryoId-1] = np.unique(allSev)[0] 
                 else:
-                     SeverEmbryo[embryoId-1] = 100
-
+                    SeverEmbryo[embryoId-1] = 100
+                    #print("Embryo ", embryoId-1, " -> ", np.unique(allClass), " classes detected")
+                    
             # assign new
             path_to_save_annotation = os.path.join(path_to_experiment, updated_annotation_name)
             if os.path.exists(path_to_save_annotation) == False:
@@ -105,22 +109,28 @@ def main():
                         embryoId = detection["id"]
                         class_name = ClassEmbryo[embryoId-1]
                         severity = 1.0 * SeverEmbryo[embryoId-1]
+                        #print("Class name: ",detection["className"] , ", ",  detection["severe"], " to :", class_name, " , ", severity, " , age : ", age)
+                        
+                        
                         if args.start == 0:
-                            if detection not in ignore_class_names:
-                                detection["className"] = class_name
-                                detection["severe"] = severity
-      
-                        if (args.start > 0) and (args.start < age):
                             if detection["className"] not in ignore_class_names:
                                 detection["className"] = class_name
                                 detection["severe"] = severity
                             if detection["className"] in (ignore_class_names + ["UNKNOWN"]):
                                 detection["severe"] = 100
                         else:
-                            detection["severe"] = 100
-                            if detection["className"] not in ignore_class_names:
-                                detection["className"] = "UNKNOWN"
+                            if (args.start > 0) and (args.start < age):
+                                if detection["className"] not in ignore_class_names:
+                                    detection["className"] = class_name
+                                    detection["severe"] = severity
+                                if detection["className"] in (ignore_class_names + ["UNKNOWN"]):
+                                    detection["severe"] = 100
+                            else:
+                                detection["severe"] = 100
+                                if detection["className"] not in ignore_class_names:
+                                    detection["className"] = "UNKNOWN"
 
+                        #print("New Class name: ", detection["className"] , ", ",  detection["severe"], " to :", class_name, " , ", severity)
     
                     updated_annotation = annotation
                     updated_annotation["labeler"] = "semi_automatic_from_"+annotation["labeler"]                   

@@ -14,7 +14,7 @@ import os
 from csv import  reader
 from matplotlib import pyplot as plt
 import seaborn as sns
-from sklearn.metrics import confusion_matrix, classification_report , f1_score
+from sklearn.metrics import confusion_matrix, classification_report , f1_score, accuracy_score
 import shutil
 
 def plot_confusion_matrices(output_folder,
@@ -23,7 +23,7 @@ def plot_confusion_matrices(output_folder,
                             name,
                             experiment_list,
                             labeler_names,
-                            algorithm_names,
+                            algorithm_name,
                             filters,
                             class_names,
                             with_severities,
@@ -31,7 +31,7 @@ def plot_confusion_matrices(output_folder,
                             severities,
                             fig_size):
 
-    EC = ExperimentCollector(experiment_list, labeler_names, algorithm_names,filters, True)
+    EC = ExperimentCollector(experiment_list, labeler_names, algorithm_name,filters, True)
     EC.collect_experimetns()
     EC.collect_jsonFiles()
     EC.collect_detections(with_severity=with_severities)
@@ -46,12 +46,16 @@ def plot_confusion_matrices(output_folder,
     plt.figure(figsize=fig_size)  # Push new figure on stack
     ax = sns.heatmap(newMatrix, linewidth=0.5,
                      xticklabels=class_names,
-                     yticklabels=class_names,
+                     yticklabels=class_names,                     
+                     vmin=0, vmax=1,
+                     cbar=0,
                      annot=not disable_numbers, cmap = "viridis" )
-    if (not name):
-        cfg_filename = os.path.splitext(os.path.basename(cfg_filename))[0]
-    else:
-        cfg_filename = name +"_" + os.path.splitext(os.path.basename(cfg_filename))[0]
+    print("name : ", os.path.splitext(os.path.basename(cfg_filename))[0])
+    cfg_filename = os.path.splitext(os.path.basename(cfg_filename))[0]
+#    if (not name):
+#        cfg_filename = os.path.splitext(os.path.basename(cfg_filename))[0]
+#    else:
+#        cfg_filename = name +"_" + os.path.splitext(os.path.basename(cfg_filename))[0]
 
     plt.savefig(os.path.join (output_folder, cfg_filename + '_cm.svg'))  # Save that figure
     plt.figure(figsize=fig_size)
@@ -83,3 +87,13 @@ def plot_confusion_matrices(output_folder,
     path_to_report_csv = os.path.join(output_folder, cfg_filename + "_report.txt")
     with open(path_to_report_csv, "w", newline='') as fp:
         fp.write(report)
+        
+        
+    # -------------------------------------------------------------
+    #accuracy_score
+    accuracyscore = accuracy_score(EC.human_labels, EC.algotightm_labels, normalize=True)
+    print(accuracyscore)
+    path_to_accuracy_csv = os.path.join(output_folder, cfg_filename + "_accuracy.txt")
+    with open(path_to_accuracy_csv, "w", newline='') as fp:
+        writer = csv.writer(fp, delimiter=",")
+        writer.writerow([accuracyscore])

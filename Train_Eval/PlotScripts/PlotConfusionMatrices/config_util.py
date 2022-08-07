@@ -29,7 +29,7 @@ def generate_config(output_folder, name=""):
         "Daniel_json",
     ]
 
-    config["algorithm_name"] = ["Classified_result_1_json", "Classified_result_1_json"]
+    config["algorithm_name"] = "Classified_result_1_json"
     config["filters"] = ["A001","B001","C001","D001","Experiment_01"]
     config["class_names"] = ["NORMAL", "NODAL", "BMP",
                              "FGF", "WNT", "SHH", "PCP", "RA",
@@ -41,7 +41,6 @@ def generate_config(output_folder, name=""):
     name_prefix = ""
     if (name):
         name_prefix = name + "_"
-
 
 
     with open(os.path.join(output_folder, name_prefix +'confusion_matrix_cfg.json'), 'w') as f:
@@ -62,3 +61,29 @@ def config_path_to_list(config_file_path):
             cfg["severities"],
             cfg["fig_size"] # !important! because matplot lib this  is in inches!
         ]
+
+def generate_configFull(output_folder, name, experiment_path, folder_name, labeler_name, GT_name):
+    config = {}
+    config["path_to_experiments"] = [
+        experiment_path
+    ]
+    config["labeler_names"] = [
+        GT_name
+    ]
+
+    config["algorithm_name"] = labeler_name
+    config["filters"] = [folder_name]
+    config["class_names"] = ["NORMAL", "BMP", "RA", "WNT", "FGF",  
+                             "NODAL", "SHH", "PCP", 
+                             "BOOM"]
+    config["with_severities"] = False
+    config["classes_with_severities"] = ["BMP", "NODAL"]
+    config["severities"] = [100, 75, 50]
+    config["fig_size"] = [11, 10]
+    name_prefix = ""
+    if (name):
+        name_prefix = name + "_"
+
+
+    with open(os.path.join(output_folder, name_prefix +'confusion_matrix.json'), 'w') as f:
+        json.dump(config, f, indent=4)

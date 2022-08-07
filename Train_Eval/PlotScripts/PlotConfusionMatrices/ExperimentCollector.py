@@ -17,13 +17,13 @@ import numpy as np
 class ExperimentCollector():
     def __init__(self, pathes_to_experiment_folders,
                  labeler_names,
-                 algorithm_names,
+                 algorithm_name,
                  filters = [],
                  test_mode=False ):
 
         self.pathes_to_experiment_folders = pathes_to_experiment_folders
         self.labeler_names = labeler_names
-        self.algorithm_result_names = algorithm_names
+        self.algorithm_result_name = algorithm_name
         self.filters = filters
         self.test_mode = test_mode
         self.plotWells = []
@@ -94,7 +94,7 @@ class ExperimentCollector():
 
     def collect_experimetns(self):
         for path_to_experoment_folder in self.pathes_to_experiment_folders:
-
+            print("Collecting : ", path_to_experoment_folder)
             wells = os.listdir(path_to_experoment_folder)
 
             for well in wells:
@@ -104,9 +104,8 @@ class ExperimentCollector():
 
                 if not self.filter_well(well):
                     continue
-
+   
                 path_to_well = os.path.join(path_to_experoment_folder, well)
-
                 folders_in_well = os.listdir(path_to_well)
 
                 labeler_found = False
@@ -119,31 +118,34 @@ class ExperimentCollector():
 
                 algorithm_result_found = False
                 algorithm_file_count = 0
-                for algorithm_result_name in self.algorithm_result_names:
-                    if algorithm_result_name in folders_in_well:
-                        algorithm_result_found = True
-                        algorithm_file_count = len(os.listdir(os.path.join(path_to_well, algorithm_result_name)))
+
+                if self.algorithm_result_name in folders_in_well:
+                    algorithm_result_found = True
+                    algorithm_file_count = len(os.listdir(os.path.join(path_to_well, self.algorithm_result_name)))
 
                 if algorithm_result_found and labeler_found and (labeler_file_count == algorithm_file_count):
                     self.plotWells.append(path_to_well)
-
+                #print("well: ", well, "-> labeler ", labeler_found, ": ", labeler_file_count, ", algorithm ", algorithm_result_found, ": ", algorithm_file_count)    
+        
+            print(len(self.plotWells), " wells collected")
 
     def collect_jsonFiles(self):
         for well in self.plotWells:
             for labeler_name in self.labeler_names:
                 if labeler_name in os.listdir(well):
                     for json_file in sorted(os.listdir(os.path.join(well, labeler_name))):
-                        json_full_path = os.path.join(well, labeler_name, json_file)
+                        json_full_path = os.path.join(well, labeler_name, json_file)                        
                         with open(json_full_path) as jf:
-                            self.jsonDict[json_file] = [json.loads(jf.read())]
+                            self.jsonDict[json_file] = [json.loads(jf.read())] 
                     break
-            for algorithm_result_name in self.algorithm_result_names:
-                if algorithm_result_name in os.listdir(well):
-                    for json_file in sorted(os.listdir(os.path.join(well, algorithm_result_name))):
-                        json_full_path = os.path.join(well, algorithm_result_name, json_file)
-                        with open(json_full_path) as jf:
-                            self.jsonDict[json_file].append(json.loads(jf.read()))
-                    break
+                
+            
+            for json_file in sorted(os.listdir(os.path.join(well, self.algorithm_result_name))):
+                json_full_path = os.path.join(well, self.algorithm_result_name, json_file)
+                with open(json_full_path) as jf:
+                     self.jsonDict[json_file].append(json.loads(jf.read()))
+            
+            print("well : ", well, " -> ", len(self.jsonDict)/720, " json collected")         
 
 
     def collect_detections(self, with_severity):
@@ -177,9 +179,9 @@ class ExperimentCollector():
                     self.algotightm_labels.append(
                         self.map_class_severity(machine_detection_class, machine_detection_severity,with_severity))
                 else:
+                    print("Error!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+                    print(json_file)
                     print (detection)
-                    print (self.pathes_to_experiment_folders)
-                    print (json_file)
                     print("algorithm detection coordinates are not compatible with human detection coordinates."
                           "\n probably new version of algorithm is used. "
                           " \n Exiting")

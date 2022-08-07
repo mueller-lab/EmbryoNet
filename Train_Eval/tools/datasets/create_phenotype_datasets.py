@@ -51,11 +51,11 @@ def main():
                       '" -o "' + path_to_output + '"' +
                       " --timestamp_format " + timestamp_format )
 
-            print('python parse_experiment_dataset.py '
-                   '--path_to_images "' + path_to_images +
-                   '" --path_to_jsons "' + path_to_jsons +
-                   '" -o "' + path_to_output + '"' +
-                   " --timestamp_format " + args.timestamp_format)
+#            print('python parse_experiment_dataset.py '
+#                   '--path_to_images "' + path_to_images +
+#                   '" --path_to_jsons "' + path_to_jsons +
+#                   '" -o "' + path_to_output + '"' +
+#                   " --timestamp_format " + args.timestamp_format)
 
 if __name__ == '__main__':
     main()
