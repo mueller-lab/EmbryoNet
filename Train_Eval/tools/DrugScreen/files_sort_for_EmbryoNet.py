@@ -5,8 +5,36 @@ import os
 from multiprocessing import Pool
 
 
-class SorterTool:
-    
+class DrugScreenSorterTool:
+    """
+    A class to sort images into the right directory structure
+    for using EmbryoNet in the analysis of images taken in
+    different wells of multiter plates.
+
+    The prerequisites for this script are as follows:
+    1. All image files are saved in one directory, e.g.:
+        'C:/directory_root/...[image_names]...'
+    2. Each image file has a signature at the beginning
+    of its file name to sort it by multiter well and position
+    within the well, e.g.:
+        '-A001' for row A, column 1
+        '--PO01' for position 01
+        '-A001--PO01'  for position 01 in well A001
+    3. Images have to be of type JPEG, PNG or TIFF
+
+    In summary, an example filename could be:
+        'C:/directory_root/-A001--PO01[...].tif'
+
+    This script will sort these files into following structure:
+        'C:/directory_sorted/-A001--PO01/images/-A001--PO01[...].tif'
+
+    Thus, the input and output directories should be
+    passed as parameters to instantiate this class, e.g.:
+        DrugScreenSorterTool(
+            'C:/directory_root/',  # Input directory
+            'C:/directory_sorted/  # Output directory
+            )
+    """
     def __init__(self, path_dir_input, path_dir_output):
         self.path_input = path_dir_input
         self.path_output = path_dir_output
@@ -24,11 +52,11 @@ class SorterTool:
             pool.close()
             pool.join()
         except RuntimeError as re:
-            print('[ERROR][EXCEPTION 1] SorterTool/__call__ \n', re)
+            print('[ERROR][EXCEPTION 1] DrugScreenSorterTool/__call__ \n', re)
         except TypeError as te:
-            print('[ERROR][EXCEPTION 2] SorterTool/__call__ \n', te)
+            print('[ERROR][EXCEPTION 2] DrugScreenSorterTool/__call__ \n', te)
         except Exception as e:
-            print('[ERROR][EXCEPTION 3] SorterTool/__call__ \n', e)
+            print('[ERROR][EXCEPTION 3] DrugScreenSorterTool/__call__ \n', e)
 
     def dir_position_make(self, positions):
         """Create directories for positions."""
@@ -39,7 +67,7 @@ class SorterTool:
                 os.mkdir(dir_path_position)
                 os.mkdir(dir_path_position_image)
             except OSError as ose:
-                print('[ERROR] SorterTool/dir_position_make \n', ose)
+                print('[ERROR] DrugScreenSorterTool/dir_position_make \n', ose)
             except Exception as e:
                 print(e)
 
@@ -49,11 +77,13 @@ class SorterTool:
         try:
             shutil.move(path_file_root, path_file_save)
         except RuntimeError as re:
-            print('[ERROR][EXCEPTION 1] SorterTool/file_move \n', re,
-                  f'\n Path file root: {path_file_root} \n Path file save: {path_file_save}')
+            print('[ERROR][EXCEPTION 1] DrugScreenSorterTool/file_move \n', re,
+                  f'\n Path file root: {path_file_root} \n'
+                  f' Path file save: {path_file_save}')
         except Exception as e:
-            print('[ERROR][EXCEPTION 2] SorterTool/file_move \n', e,
-                  f'\n Path file root: {path_file_root} \n Path file save: {path_file_save}')
+            print('[ERROR][EXCEPTION 2] DrugScreenSorterTool/file_move \n', e,
+                  f'\n Path file root: {path_file_root} \n'
+                  f' Path file save: {path_file_save}')
 
     def glob_fn(self):
         """Get paths of image files in input directory."""
@@ -63,9 +93,9 @@ class SorterTool:
             paths_files.extend(glob.glob(self.path_input + '/*.jpg'))
             return paths_files
         except OSError as ose:
-            print('[ERROR][EXCEPTION 1] SorterTool/glob_fn \n', ose)
+            print('[ERROR][EXCEPTION 1] DrugScreenSorterTool/glob_fn \n', ose)
         except Exception as e:
-            print('[ERROR][EXCEPTION 2] SorterTool/glob_fn \n', e)
+            print('[ERROR][EXCEPTION 2] DrugScreenSorterTool/glob_fn \n', e)
 
     def navigations_files_prepare(self, well_positions):
         """Prepare filepaths for moving images."""
@@ -88,9 +118,9 @@ class SorterTool:
 
             return navigations_files
         except OSError as ose:
-            print('[ERROR][EXCEPTION 1] SorterTool/navigations_files_prepare \n', ose)
+            print('[ERROR][EXCEPTION 1] DrugScreenSorterTool/navigations_files_prepare \n', ose)
         except Exception as e:
-            print('[ERROR][EXCEPTION 2] SorterTool/navigations_files_prepare \n', e)
+            print('[ERROR][EXCEPTION 2] DrugScreenSorterTool/navigations_files_prepare \n', e)
 
     def path_check(self):
         """Convenience function to assert that given paths exist."""
@@ -112,9 +142,9 @@ class SorterTool:
             well_positions = sorted(set(well_positions))
             return well_positions
         except OSError as ose:
-            print('[ERROR][EXCEPTION 1] SorterTool/well_dir_fn \n', ose)
+            print('[ERROR][EXCEPTION 1] DrugScreenSorterTool/well_dir_fn \n', ose)
         except Exception as e:
-            print('[ERROR][EXCEPTION 2] SorterTool/well_dir_fn \n', e)
+            print('[ERROR][EXCEPTION 2] DrugScreenSorterTool/well_dir_fn \n', e)
 
 
 if __name__ == '__main__':
@@ -132,4 +162,4 @@ if __name__ == '__main__':
     else:
         path_output = args.output_path
 
-    SorterTool(path_input, path_output)()
+    DrugScreenSorterTool(path_input, path_output)()
