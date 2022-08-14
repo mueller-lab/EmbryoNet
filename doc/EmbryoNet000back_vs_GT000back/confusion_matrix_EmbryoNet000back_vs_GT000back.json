@@ -1,0 +1,88 @@
+{
+    "path_to_experiments": [
+        "/media/hmorales/Elements/test_data/210425_Test",
+        "/media/hmorales/Elements/test_data/210504_Test",
+        "/media/hmorales/Elements/test_data/220330_Eval_Megatron",
+        "/media/hmorales/Elements/test_data/220331_Eval_Megatron",
+        "/media/hmorales/Elements/test_data/220401_Eval_Megatron"
+    ],
+    "labeler_names": [
+        "GT_000back_json"
+    ],
+    "algorithm_name": "zfish_129__batch_8_000back_Classified_result_1_json_corrected",
+    "filters": [
+        "A001",
+        "B001",
+        "C001",
+        "D001",
+        "A002",
+        "B002",
+        "C002",
+        "D002",
+        "A003",
+        "B003",
+        "C003",
+        "D003",
+        "A004",
+        "B004",
+        "C004",
+        "D004",
+        "A005",
+        "B005",
+        "C005",
+        "D005",
+        "A006",
+        "B006",
+        "C006",
+        "D006",
+        "XY01",
+        "XY02",
+        "XY03",
+        "XY04",
+        "XY05",
+        "XY06",
+        "XY07",
+        "XY08",
+        "XY09",
+        "XY10",
+        "XY11",
+        "XY12",
+        "XY13",
+        "XY14",
+        "XY15",
+        "XY16",
+        "XY17",
+        "XY18",
+        "XY19",
+        "XY20",
+        "XY21",
+        "XY22",
+        "XY23",
+        "XY24"
+    ],
+    "class_names": [
+        "NORMAL",
+        "BMP",
+        "RA",
+        "WNT",
+        "FGF",
+        "NODAL",
+        "SHH", 
+        "PCP",              
+        "BOOM"
+    ],
+    "with_severities": false,
+    "classes_with_severities": [
+        "BMP",
+        "NODAL"
+    ],
+    "severities": [
+        100,
+        75,
+        50
+    ],
+    "fig_size": [
+        10,
+        10
+    ]
+}
