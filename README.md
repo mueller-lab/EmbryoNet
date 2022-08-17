@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This is repository provides supplementary implementation materials to our paper "EmbryoNet: using deep learning to link embryonic phenotypes to signaling functions. 
+This repository provides supplementary implementation materials to our paper "EmbryoNet: using deep learning to link embryonic phenotypes to signaling functions". 
 
 During zebrafish development, seven major signaling pathways orchestrate the formation of the body plan: BMP, RA, Wnt, FGF and Nodal pattern the germ layers and regulate the formation of the orthogonal anterior-posterior and dorsal-ventral axes, whereas the elongation and morphogenesis of the body axis and later tissues is additionally shaped by the activity of Shh and PCP signaling.
 
