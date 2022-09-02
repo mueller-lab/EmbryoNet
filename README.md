@@ -44,6 +44,10 @@ Folders with packages and tools to work with EmbryoNet database model converting
 
 <img src= "doc/WNT_activation.png" /> 
 
+## Training and evaluation data sets 
+
+The data will be available from DOI 10.48606/15.
+
 ## Thanks  
 
 * https://github.com/KaimingHe/deep-residual-networks 
