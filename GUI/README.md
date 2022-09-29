@@ -1,7 +1,7 @@
 # EmbryoClassifier and EmbryoLabeler
 How to build EmbryoClassifier
 1) Install <a href="https://cmake.org/download/"><b>CMake</b></a> 
-2) Install <a href= "https://docs.microsoft.com/de-de/visualstudio/releases/2019/history"> <b>Visial Studio 2019</b> </a>
+2) Install <a href= "https://docs.microsoft.com/de-de/visualstudio/releases/2019/history"> <b>Visual Studio 2019</b> </a>
 3) Download <a href="https://drive.google.com/file/d/1JTOIYtY5jYUGbXGmBsgfuLHoRTNAc3qx/view?usp=sharing"><b>dependencies</b></a>
 5) Open command line (cmd) and run dependencies/scripts/prepare_env.bat
 6) In command that (4) command line write "cmake-gui"
