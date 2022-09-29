@@ -3,8 +3,8 @@ How to build EmbryoClassifier
 1) Install <a href="https://cmake.org/download/"><b>CMake</b></a> 
 2) Install <a href= "https://docs.microsoft.com/de-de/visualstudio/releases/2019/history"> <b>Visual Studio 2019</b> </a>
 3) Download <a href="https://drive.google.com/file/d/1JTOIYtY5jYUGbXGmBsgfuLHoRTNAc3qx/view?usp=sharing"><b>dependencies</b></a>
-5) Open command line (cmd) and run dependencies/scripts/prepare_env.bat
-6) In command that (4) command line write "cmake-gui"
+5) Open the command line (cmd) and run "dependencies/scripts/prepare_env.bat"
+6) In the cmd of (4) write "cmake-gui" (set the path to "cmake-gui" if necessary)
 7) Set "where is the source code to  "https://github.com/hagorms/EmbryoNet/tree/main/GUI"
 8) Set "Where to build binaries to "https://github.com/hagorms/EmbryoNet/tree/main/GUI/build" 
 9) press Configure 
