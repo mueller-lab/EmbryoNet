@@ -1,12 +1,13 @@
 # EmbryoClassifier and EmbryoLabeler
-How to build EmbryoClassifier
+How to build EmbryoClassifier 
+You can also follow the step-by-step <a href="http://embryonet.de/tutorial.html"><b> VideocTutorial</b></a> 
 1) Install <a href="https://cmake.org/download/"><b>CMake</b></a> 
 2) Install <a href= "https://docs.microsoft.com/de-de/visualstudio/releases/2019/history"> <b>Visual Studio 2019</b> </a>
-3) Download <a href="https://drive.google.com/file/d/1JTOIYtY5jYUGbXGmBsgfuLHoRTNAc3qx/view?usp=sharing"><b>dependencies</b></a>
+3) Download <a href="https://drive.google.com/file/d/1JTOIYtY5jYUGbXGmBsgfuLHoRTNAc3qx/view?usp=sharing"><b>dependencies</b></a> and clone the EmbryoNet repository (e.g. git clone https://github.com/mueller-lab/EmbryoNet.git)
 5) Open the command line (cmd) and run "dependencies/scripts/prepare_env.bat"
-6) In the cmd of (4) write "cmake-gui" (set the path to "cmake-gui" if necessary)
-7) Set "where is the source code to  "https://github.com/mueller-lab/EmbryoNet/tree/main/GUI"
-8) Set "Where to build binaries to "https://github.com/mueller-lab/EmbryoNet/tree/main/GUI/build" 
+6) In the cmd of (4) write "cmake-gui" 
+7) Set "where is the source code to  "path_to_GUI" e.g. "C:\Users\Documents\EmbryoNet\EmbryoNet\GUI" . This is the local paht to the cloned repository
+8) Set "Where to build binaries to "path_to_build" e.g. "C:\Users\Documents\EmbryoNet\EmbryoNet\GUI\build" 
 9) press Configure 
 10) press Generate 
 11) Open Project in Microsoft Visual Studio 2019
