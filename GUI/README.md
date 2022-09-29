@@ -1,6 +1,6 @@
 # EmbryoClassifier and EmbryoLabeler
 How to build EmbryoClassifier 
-You can also follow the step-by-step <a href="http://embryonet.de/tutorial.html"><b> VideocTutorial</b></a> 
+You can also follow the step-by-step <a href="http://embryonet.de/tutorial.html"><b> Video Tutorial</b></a> 
 1) Install <a href="https://cmake.org/download/"><b>CMake</b></a> 
 2) Install <a href= "https://docs.microsoft.com/de-de/visualstudio/releases/2019/history"> <b>Visual Studio 2019</b> </a>
 3) Download <a href="https://drive.google.com/file/d/1JTOIYtY5jYUGbXGmBsgfuLHoRTNAc3qx/view?usp=sharing"><b>dependencies</b></a> and clone the EmbryoNet repository (e.g. git clone https://github.com/mueller-lab/EmbryoNet.git)
