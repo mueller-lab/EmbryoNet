@@ -30,9 +30,9 @@ There are two tools implemented with graphical user interface:
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   <img src= "doc/Embryo_Classifier.png" width="800" height="600"  />
 
-In order to compile, please follow the tutorial.
+To compile the GUI, please follow the <a href="https://github.com/mueller-lab/EmbryoNet/tree/main/GUI"><b>instructions and tutorial</b></a>.
 
-## <a href="https://github.com/hagorms/EmbryoNet/tree/main/Train_Eval"><b>Train_Eval</b></a>
+## <a href="https://github.com/mueller-lab/EmbryoNet/tree/main/Train_Eval"><b>Network Training  and Evaluation tools</b></a>
 
 The Train_Eval folder contains python tools to train EmbryoNet and analyze inference results.
 Folders with packages and tools to work with EmbryoNet database model converting, running analysis, training, etc:
