@@ -7,7 +7,7 @@ How to build EmbryoClassifier - You can also follow the step-by-step <a href="ht
 6) In the cmd of (4) write "cmake-gui" 
 7) Set "where is the source code to  "path_to_GUI" e.g. "C:\EmbryoNet\GUI" . This is the local path to the cloned repository
 8) Set "Where to build binaries to "path_to_build" e.g. "C:\EmbryoNet\GUI\build" 
-9) press Configure  - specify the generator of the project as "Visual Studio 16 2019"
+9) press Configure  (specify the generator of the project as "Visual Studio 16 2019")
 10) press Generate 
 11) Open Project in Microsoft Visual Studio 2019
 12) Right click on "Solution in  "Embryo_classifier" and "Build solution"
