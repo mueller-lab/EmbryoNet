@@ -1,0 +1,439 @@
+{
+    "class_count": [
+        0,
+        0,
+        0,
+        10,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+    ],
+    "classes": [
+        {
+            "color": [
+                255,
+                0,
+                0
+            ],
+            "id": 0,
+            "name": "BMP",
+            "severities": [
+                100,
+                75,
+                50,
+                25
+            ]
+        },
+        {
+            "color": [
+                0,
+                0,
+                255
+            ],
+            "id": 1,
+            "name": "NODAL"
+        },
+        {
+            "color": [
+                0,
+                255,
+                0
+            ],
+            "id": 2,
+            "name": "NORMAL"
+        },
+        {
+            "color": [
+                0,
+                0,
+                0
+            ],
+            "id": 3,
+            "name": "UNKNOWN"
+        },
+        {
+            "color": [
+                255,
+                0,
+                255
+            ],
+            "id": 4,
+            "name": "BOOM"
+        },
+        {
+            "color": [
+                0,
+                255,
+                255
+            ],
+            "id": 5,
+            "name": "WNT"
+        },
+        {
+            "color": [
+                255,
+                255,
+                0
+            ],
+            "id": 6,
+            "name": "FGF"
+        },
+        {
+            "color": [
+                255,
+                128,
+                128
+            ],
+            "id": 7,
+            "name": "SHH"
+        },
+        {
+            "color": [
+                0,
+                128,
+                255
+            ],
+            "id": 8,
+            "name": "PCP"
+        },
+        {
+            "color": [
+                128,
+                0,
+                128
+            ],
+            "id": 9,
+            "name": "RA"
+        },
+        {
+            "color": [
+                255,
+                255,
+                255
+            ],
+            "id": 10,
+            "name": "CUT"
+        }
+    ],
+    "detection_list": [
+        {
+            "brx": 1842,
+            "bry": 1588,
+            "classId": 3,
+            "className": "UNKNOWN",
+            "color": [
+                0,
+                0,
+                0
+            ],
+            "concentrationConfident": false,
+            "confidence": true,
+            "id": 1,
+            "prob": [
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            "rotated": false,
+            "severe": 100.0,
+            "tlx": 1469,
+            "tly": 1215
+        },
+        {
+            "brx": 1517,
+            "bry": 1775,
+            "classId": 3,
+            "className": "UNKNOWN",
+            "color": [
+                0,
+                0,
+                0
+            ],
+            "concentrationConfident": false,
+            "confidence": true,
+            "id": 2,
+            "prob": [
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            "rotated": false,
+            "severe": 100.0,
+            "tlx": 1118,
+            "tly": 1376
+        },
+        {
+            "brx": 1522,
+            "bry": 1268,
+            "classId": 3,
+            "className": "UNKNOWN",
+            "color": [
+                0,
+                0,
+                0
+            ],
+            "concentrationConfident": false,
+            "confidence": true,
+            "id": 3,
+            "prob": [
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            "rotated": false,
+            "severe": 100.0,
+            "tlx": 1144,
+            "tly": 890
+        },
+        {
+            "brx": 1160,
+            "bry": 1144,
+            "classId": 3,
+            "className": "UNKNOWN",
+            "color": [
+                0,
+                0,
+                0
+            ],
+            "concentrationConfident": false,
+            "confidence": true,
+            "id": 4,
+            "prob": [
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            "rotated": false,
+            "severe": 100.0,
+            "tlx": 770,
+            "tly": 754
+        },
+        {
+            "brx": 676,
+            "bry": 1012,
+            "classId": 3,
+            "className": "UNKNOWN",
+            "color": [
+                0,
+                0,
+                0
+            ],
+            "concentrationConfident": false,
+            "confidence": true,
+            "id": 5,
+            "prob": [
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            "rotated": false,
+            "severe": 100.0,
+            "tlx": 282,
+            "tly": 618
+        },
+        {
+            "brx": 939,
+            "bry": 1788,
+            "classId": 3,
+            "className": "UNKNOWN",
+            "color": [
+                0,
+                0,
+                0
+            ],
+            "concentrationConfident": false,
+            "confidence": true,
+            "id": 6,
+            "prob": [
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            "rotated": false,
+            "severe": 100.0,
+            "tlx": 562,
+            "tly": 1411
+        },
+        {
+            "brx": 1387,
+            "bry": 823,
+            "classId": 3,
+            "className": "UNKNOWN",
+            "color": [
+                0,
+                0,
+                0
+            ],
+            "concentrationConfident": false,
+            "confidence": true,
+            "id": 7,
+            "prob": [
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            "rotated": false,
+            "severe": 100.0,
+            "tlx": 1015,
+            "tly": 451
+        },
+        {
+            "brx": 1213,
+            "bry": 1512,
+            "classId": 3,
+            "className": "UNKNOWN",
+            "color": [
+                0,
+                0,
+                0
+            ],
+            "concentrationConfident": false,
+            "confidence": true,
+            "id": 8,
+            "prob": [
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            "rotated": false,
+            "severe": 100.0,
+            "tlx": 832,
+            "tly": 1131
+        },
+        {
+            "brx": 637,
+            "bry": 1400,
+            "classId": 3,
+            "className": "UNKNOWN",
+            "color": [
+                0,
+                0,
+                0
+            ],
+            "concentrationConfident": false,
+            "confidence": true,
+            "id": 9,
+            "prob": [
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            "rotated": false,
+            "severe": 100.0,
+            "tlx": 245,
+            "tly": 1008
+        },
+        {
+            "brx": 1094,
+            "bry": 520,
+            "classId": 3,
+            "className": "UNKNOWN",
+            "color": [
+                0,
+                0,
+                0
+            ],
+            "concentrationConfident": false,
+            "confidence": true,
+            "id": 10,
+            "prob": [
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            "rotated": false,
+            "severe": 100.0,
+            "tlx": 726,
+            "tly": 152
+        }
+    ],
+    "imageId": 88,
+    "labeler": "GT_120back",
+    "source_name": "-B003--PO01--LO090--CO6--SL001--PX32500--PW0100--IN0100--TM280--X053545--Y033148--Z190000--T3281928202--WE00010.jpg",
+    "source_type": "folder",
+    "version": "D"
+}

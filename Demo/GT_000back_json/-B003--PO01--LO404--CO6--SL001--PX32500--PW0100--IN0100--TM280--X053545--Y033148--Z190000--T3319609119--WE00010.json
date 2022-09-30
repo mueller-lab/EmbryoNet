@@ -1,0 +1,439 @@
+{
+    "class_count": [
+        0,
+        0,
+        0,
+        0,
+        2,
+        8,
+        0,
+        0,
+        0,
+        0,
+        0
+    ],
+    "classes": [
+        {
+            "color": [
+                255,
+                0,
+                0
+            ],
+            "id": 0,
+            "name": "BMP",
+            "severities": [
+                100,
+                75,
+                50,
+                25
+            ]
+        },
+        {
+            "color": [
+                0,
+                0,
+                255
+            ],
+            "id": 1,
+            "name": "NODAL"
+        },
+        {
+            "color": [
+                0,
+                255,
+                0
+            ],
+            "id": 2,
+            "name": "NORMAL"
+        },
+        {
+            "color": [
+                0,
+                0,
+                0
+            ],
+            "id": 3,
+            "name": "UNKNOWN"
+        },
+        {
+            "color": [
+                255,
+                0,
+                255
+            ],
+            "id": 4,
+            "name": "BOOM"
+        },
+        {
+            "color": [
+                0,
+                255,
+                255
+            ],
+            "id": 5,
+            "name": "WNT"
+        },
+        {
+            "color": [
+                255,
+                255,
+                0
+            ],
+            "id": 6,
+            "name": "FGF"
+        },
+        {
+            "color": [
+                255,
+                128,
+                128
+            ],
+            "id": 7,
+            "name": "SHH"
+        },
+        {
+            "color": [
+                0,
+                128,
+                255
+            ],
+            "id": 8,
+            "name": "PCP"
+        },
+        {
+            "color": [
+                128,
+                0,
+                128
+            ],
+            "id": 9,
+            "name": "RA"
+        },
+        {
+            "color": [
+                255,
+                255,
+                255
+            ],
+            "id": 10,
+            "name": "CUT"
+        }
+    ],
+    "detection_list": [
+        {
+            "brx": 1852,
+            "bry": 1600,
+            "classId": 5,
+            "className": "WNT",
+            "color": [
+                255,
+                255,
+                0
+            ],
+            "concentrationConfident": false,
+            "confidence": true,
+            "id": 1,
+            "prob": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            "rotated": false,
+            "severe": 100.0,
+            "tlx": 1462,
+            "tly": 1210
+        },
+        {
+            "brx": 1518,
+            "bry": 1775,
+            "classId": 5,
+            "className": "WNT",
+            "color": [
+                255,
+                255,
+                0
+            ],
+            "concentrationConfident": false,
+            "confidence": true,
+            "id": 2,
+            "prob": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            "rotated": false,
+            "severe": 100.0,
+            "tlx": 1119,
+            "tly": 1376
+        },
+        {
+            "brx": 1522,
+            "bry": 1267,
+            "classId": 5,
+            "className": "WNT",
+            "color": [
+                255,
+                255,
+                0
+            ],
+            "concentrationConfident": false,
+            "confidence": true,
+            "id": 3,
+            "prob": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            "rotated": false,
+            "severe": 100.0,
+            "tlx": 1147,
+            "tly": 892
+        },
+        {
+            "brx": 1162,
+            "bry": 1140,
+            "classId": 5,
+            "className": "WNT",
+            "color": [
+                255,
+                255,
+                0
+            ],
+            "concentrationConfident": false,
+            "confidence": true,
+            "id": 4,
+            "prob": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            "rotated": false,
+            "severe": 100.0,
+            "tlx": 773,
+            "tly": 751
+        },
+        {
+            "brx": 672,
+            "bry": 1003,
+            "classId": 5,
+            "className": "WNT",
+            "color": [
+                255,
+                255,
+                0
+            ],
+            "concentrationConfident": false,
+            "confidence": true,
+            "id": 5,
+            "prob": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            "rotated": false,
+            "severe": 100.0,
+            "tlx": 297,
+            "tly": 628
+        },
+        {
+            "brx": 935,
+            "bry": 1786,
+            "classId": 5,
+            "className": "WNT",
+            "color": [
+                255,
+                255,
+                0
+            ],
+            "concentrationConfident": false,
+            "confidence": true,
+            "id": 6,
+            "prob": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            "rotated": false,
+            "severe": 100.0,
+            "tlx": 565,
+            "tly": 1416
+        },
+        {
+            "brx": 1384,
+            "bry": 816,
+            "classId": 5,
+            "className": "WNT",
+            "color": [
+                255,
+                255,
+                0
+            ],
+            "concentrationConfident": false,
+            "confidence": true,
+            "id": 7,
+            "prob": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            "rotated": false,
+            "severe": 100.0,
+            "tlx": 1015,
+            "tly": 447
+        },
+        {
+            "brx": 1218,
+            "bry": 1505,
+            "classId": 4,
+            "className": "BOOM",
+            "color": [
+                255,
+                0,
+                255
+            ],
+            "concentrationConfident": false,
+            "confidence": true,
+            "id": 8,
+            "prob": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            "rotated": false,
+            "severe": 100.0,
+            "tlx": 845,
+            "tly": 1132
+        },
+        {
+            "brx": 639,
+            "bry": 1414,
+            "classId": 4,
+            "className": "BOOM",
+            "color": [
+                255,
+                0,
+                255
+            ],
+            "concentrationConfident": false,
+            "confidence": true,
+            "id": 9,
+            "prob": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            "rotated": false,
+            "severe": 100.0,
+            "tlx": 255,
+            "tly": 1030
+        },
+        {
+            "brx": 1091,
+            "bry": 532,
+            "classId": 5,
+            "className": "WNT",
+            "color": [
+                255,
+                255,
+                0
+            ],
+            "concentrationConfident": false,
+            "confidence": true,
+            "id": 10,
+            "prob": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            "rotated": false,
+            "severe": 100.0,
+            "tlx": 715,
+            "tly": 156
+        }
+    ],
+    "imageId": 403,
+    "labeler": "GT_0back",
+    "source_name": "-B003--PO01--LO404--CO6--SL001--PX32500--PW0100--IN0100--TM280--X053545--Y033148--Z190000--T3319609119--WE00010.jpg",
+    "source_type": "folder",
+    "version": "D"
+}
