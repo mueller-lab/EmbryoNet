@@ -28,7 +28,7 @@
         "tracker": {
             "detector": {
                 "name": "FishDetector",
-                "engine": "CPU",
+                "engine": "GPU",
                 "fx": 0.25,
                 "fy": 0.25,
                 "hough": {
