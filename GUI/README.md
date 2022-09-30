@@ -24,4 +24,10 @@ Starting from 5) you can alternatively continue in command line with the activat
 6) Select all target in the solution explorer, right click over them and choose "Build selection"
 7) The executables EmbryoLabeler and EmbryoClassifier (CPU and GPU) will be genrated at the follwing paths: "$path_to_build\CVStudio_sources\FishLabeler\Release\FishLabeler.exe", "$path_to_build\CVStudio_sources\FishClassifier_gui\CPU\Release\FishClassifier_gui_CPU.exe" and "$path_to_build\CVStudio_sources\FishClassifier_gui\GPU\Release\FishClassifier_gui_CGU.exe", respectively.
 
+
+Requirements
+
+- Standard PC, 16Gb RAM, Windows 10
+- For GPU calculations: Nvidia Graphic Card and CUDA 11.4 installed. The installation and demo were tested in Windows10
+
 Installation takes 10 minutes after Visual Studio is installed (10 minutes) and the Data is downloaded (23 minutes)
