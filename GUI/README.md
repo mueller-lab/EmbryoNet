@@ -11,7 +11,7 @@ How to build EmbryoClassifier - You can also follow the step-by-step <a href="ht
 10) press Generate 
 11) Open the project in Microsoft Visual Studio 2019. The project sould be located in  "path_to_build" e.g. "C:\EmbryoNet\GUI\build\Embryo_classifier.sln"
 12) Change the configuration mode to "Release" 
-13) Select all traget in the solution explorer, right click over them and choose "Build selection"
+13) Select all target in the solution explorer, right click over them and choose "Build selection"
 14) Test labeler tool:  right click on "FishLabeler" and choose "Set as Startup Project"
 
 Starting from 5) you can alternatively continue in command line with the activated environment
