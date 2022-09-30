@@ -6,7 +6,7 @@
     "Algorithm": {
         "type": "EmbryoClassifer",
         "classifier": {
-            "path_to_net": "EmbryoNet_GPU.onnx",
+            "path_to_net": "%3/EmbryoNet_GPU.onnx",
             "name": "Fish",
             "type": "OpenCV",
             "engine": "ONNX",
