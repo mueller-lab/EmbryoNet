@@ -9,9 +9,9 @@
 
 Requirements
 
-- Windows 10 
-- For GPU calculations: Nvidia Graphic Card and CUDA drivers installed
-The installation and demo were tested in Windows10
+- Standard PC, 16Gb RAM, Windows 10
+- For GPU calculations: Nvidia Graphic Card and CUDA drivers installed. The installation and demo were tested in Windows10
+- Installation takes 10 minutes after Visual Studio is installed (10 minutes) and the Data is downloaded (23 minutes)
 
 Execution Time:
 
