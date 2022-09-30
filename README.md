@@ -16,7 +16,7 @@ The EmbryoNet classification pipeline is accurate, lightweight and easy to deplo
 This repository contains sources implementing EmbryoNet training and export code, together with additional C++ tools for data set labeling and inference.
 The materials are organized in folders <a href="https://github.com/hagorms/EmbryoNet/tree/main/GUI">GUI</a> and <a href="https://github.com/hagorms/EmbryoNet/tree/main/Train_Eval">Train_Eval</a> .
 
-## <a href="https://github.com/hagorms/EmbryoNet/tree/main/GUI"><b>GUI</b></a> 
+## <a href="https://github.com/mueller-lab/EmbryoNet/tree/main/GUI"><b>GUI</b></a> 
 
 The GUI folder contains C++ tools to label and visualize data sets and to run EmbryoNet inference. 
 
