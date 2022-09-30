@@ -10,7 +10,7 @@
 Requirements
 
 - Standard PC, 16Gb RAM, Windows 10
-- For GPU calculations: Nvidia Graphic Card and CUDA drivers installed. The installation and demo were tested in Windows10
+- For GPU calculations: Nvidia Graphic Card and CUDA 11.4 installed. The installation and demo were tested in Windows10
 
 Execution Time for Demo (10 embryos and 720 time points):
 
