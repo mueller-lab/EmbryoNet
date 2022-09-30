@@ -26,3 +26,4 @@ To run the software on your data have it organized in the following way:
 5) In the GUI, open the folder with experiments, e.g. "your_path\EmbryoNet\Demo", pressing "Load"
 6) Press "Start"
  
+** To reproduce the results from the manuscript, download the test data from https://doi.org/10.48606/29 and https://doi.org/10.48606/30 and run the classifier on it. For data recorded with the Acquifer imaging machine use the default settings, for Keyence data set the minimum diameter to 300µm and the maximum to 390µm, and change the time format to T[0-9]+.
