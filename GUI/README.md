@@ -11,8 +11,7 @@ How to build EmbryoClassifier - You can also follow the step-by-step <a href="ht
 10) press Generate 
 11) Open the project in Microsoft Visual Studio 2019. The project sould be located at "path_to_build" e.g. "C:\EmbryoNet\GUI\build\Embryo_classifier.sln"
 12) Change the configuration mode to "Release" 
-13) Select all target in the solution explorer, right click over them and choose "Build selection"
-13*) If you want to use GPU for the EmbryoClassifier, modifiy the line 20 in "your_path\EmbryoNet\GUI\CVStudio_sources\FishClassifier_lib\include\EmbryoClassifier.h" to "#define WITH_ONNXRUNTIME 1", and Rebuild "FishClassifier_gui" and "FishClassifier_lib"
+13) Select all target in the solution explorer, right click over them and choose "Build selection". If you want to use GPU for the EmbryoClassifier, modifiy the line 20 in "your_path\EmbryoNet\GUI\CVStudio_sources\FishClassifier_lib\include\EmbryoClassifier.h" to "#define WITH_ONNXRUNTIME 1", and Rebuild "FishClassifier_gui" and "FishClassifier_lib"
 15) The executables EmbryoLabeler and EmbryoClassifier (CPU and GPU) will be genrated at the follwing paths: "$path_to_build\CVStudio_sources\FishLabeler\Release\FishLabeler.exe", "$path_to_build\CVStudio_sources\FishClassifier_gui\CPU\Release\FishClassifier_gui_CPU.exe" and "$path_to_build\CVStudio_sources\FishClassifier_gui\GPU\Release\FishClassifier_gui_CPU.exe", respectively.
 
 Starting from 5) you can alternatively continue in command line with the activated environment
