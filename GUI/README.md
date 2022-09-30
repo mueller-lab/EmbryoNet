@@ -1,8 +1,9 @@
 # EmbryoClassifier and EmbryoLabeler
 How to build EmbryoClassifier - You can also follow the step-by-step <a href="http://embryonet.de/tutorial.html"><b> Video Tutorial</b></a> 
 1) Install <a href="https://cmake.org/download/"><b>CMake</b></a> 
-2) Install <a href= "https://docs.microsoft.com/de-de/visualstudio/releases/2019/history"> <b>Visual Studio 2019</b> </a>
-3) Download <a href="https://drive.google.com/file/d/1JTOIYtY5jYUGbXGmBsgfuLHoRTNAc3qx/view?usp=sharing"><b>dependencies</b></a> and clone the EmbryoNet repository (e.g. git clone https://github.com/mueller-lab/EmbryoNet.git)
+2) Install <a href="https://developer.nvidia.com/cuda-11-4-4-download-archive/"><b>Cuda 11.4</b></a>   
+3) Install <a href= "https://docs.microsoft.com/de-de/visualstudio/releases/2019/history"> <b>Visual Studio 2019</b> </a>
+4) Download <a href="https://drive.google.com/file/d/1JTOIYtY5jYUGbXGmBsgfuLHoRTNAc3qx/view?usp=sharing"><b>dependencies</b></a> and clone the EmbryoNet repository (e.g. git clone https://github.com/mueller-lab/EmbryoNet.git)
 5) Open the command line (cmd) in the folder "dependencies/scripts/" and run "prepare_env.bat"
 6) In the cmd of (4) write "cmake-gui" 
 7) Set "where is the source code to  "path_to_GUI" e.g. "C:\EmbryoNet\GUI" . This is the local path to the cloned repository
