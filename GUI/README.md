@@ -9,8 +9,9 @@ How to build EmbryoClassifier - You can also follow the step-by-step <a href="ht
 8) Set "Where to build binaries to "path_to_build" e.g. "C:\EmbryoNet\GUI\build" 
 9) press Configure  (specify the generator of the project as "Visual Studio 16 2019")
 10) press Generate 
-11) Open Project in Microsoft Visual Studio 2019
-12) Right click on "Solution in  "Embryo_classifier" and "Build solution"
+11) Open the project in Microsoft Visual Studio 2019. The porject sould be located in  "path_to_build" e.g. "C:\EmbryoNet\GUI\build\Embryo_classifier.sln"
+12) Change the configuration mode to "Release" 
+13) Select all traget in the solution explorer, right click over them and choose "Build selection"
 
 
 Starting from 5) you can alternatively continue in command line with the activated environment
