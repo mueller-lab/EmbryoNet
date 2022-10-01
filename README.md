@@ -44,7 +44,7 @@ Folders with packages and tools to work with EmbryoNet database model converting
 
 <img src= "doc/WNT_activation.png" /> 
 
-## <a href="https://github.com/mueller-lab/EmbryoNet/tree/main/Demo"><b>Network Demo </b></a>
+## <a href="https://github.com/mueller-lab/EmbryoNet/tree/main/Demo"><b>Demo </b></a>
 
 The Demo folder contains an small data set of images and the correspoing instructions to run EmbryoNet inference. 
 
