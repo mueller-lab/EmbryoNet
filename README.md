@@ -30,7 +30,12 @@ There are two tools implemented with graphical user interface:
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   <img src= "doc/Embryo_Classifier.png" width="800" height="600"  />
 
+
 To compile the GUI, please follow the <a href="https://github.com/mueller-lab/EmbryoNet/tree/main/GUI"><b>instructions and tutorial</b></a>.
+
+You can also download the complided GUI <a href="https://drive.google.com/file/d/1NIqCi4z8yh8RP_hnPSGnpzHgq_1C9qtU/edit"><b>installers for Windows</b></a>.
+
+
 
 ## <a href="https://github.com/mueller-lab/EmbryoNet/tree/main/Train_Eval"><b>Network Training  and Evaluation tools</b></a>
 
