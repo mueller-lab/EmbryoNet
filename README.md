@@ -20,38 +20,38 @@ The materials are organized in folders <a href="https://github.com/mueller-lab/E
 
 The GUI folder contains C++ tools to label and visualize data sets and to run EmbryoNet inference. 
 
-There are two tools implemented with graphical user interface: 
+There are two tools implemented with a graphical user interface: 
 
-* FishLabeler  - tool to visualize and manually label predetected embryos.  
+* FishLabeler  - Tool to visualize and manually label pre-detected embryos.  
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <img src= "doc/Embryo_Labeler_RA.png" width="800" height="600" /> 
 
-* FishClassifier  - tool to detect embryos and run the EmbryoNet inference pipeline.
+* FishClassifier  - Tool to detect embryos and run the EmbryoNet inference pipeline.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   <img src= "doc/Embryo_Classifier.png" width="800" height="600"  />
 
 
 To compile the GUI, please follow the <a href="https://github.com/mueller-lab/EmbryoNet/tree/main/GUI"><b>instructions and tutorial</b></a>.
 
-You can also download the complided GUI <a href="https://drive.google.com/file/d/1NIqCi4z8yh8RP_hnPSGnpzHgq_1C9qtU/edit"><b>installers for Windows</b></a>.
+You can also download the compiled GUI <a href="https://drive.google.com/file/d/1NIqCi4z8yh8RP_hnPSGnpzHgq_1C9qtU/edit"><b>installers for Windows</b></a>.
 
 
 
 ## <a href="https://github.com/mueller-lab/EmbryoNet/tree/main/Train_Eval"><b>Network Training  and Evaluation tools</b></a>
 
-The Train_Eval folder contains python tools to train EmbryoNet and analyze inference results.
+The Train_Eval folder contains Python tools to train EmbryoNet and analyze inference results.
 Folders with packages and tools to work with EmbryoNet database model converting, running analysis, training, etc:
 
-* TrainEval/tools/Datasets: tools to work with data sets
-* TrainEval/tools/Export: tools to export a trained model and to create ExperimentRunner configs
-* TrainEval/tools/GenerateVideos: tools to generate Class Activation Maps and to create a collage video from them
-* TrainEval/tools/Run: tool to run embryo classification with python
+* TrainEval/tools/Datasets: Tools to work with data sets
+* TrainEval/tools/Export: Tools to export a trained model and to create ExperimentRunner configs
+* TrainEval/tools/GenerateVideos: Tools to generate Class Activation Maps and to create a collage video from them
+* TrainEval/tools/Run: Tool to run embryo classification with Python
 
 <img src= "doc/WNT_activation.png" /> 
 
 ## <a href="https://github.com/mueller-lab/EmbryoNet/tree/main/Demo"><b>Demo </b></a>
 
-The Demo folder contains an small data set of images and the correspoing instructions to run EmbryoNet inference. 
+The Demo folder contains a small data set of images and the corresponding instructions to run EmbryoNet inference. 
 
 ## Training and evaluation data sets 
 
