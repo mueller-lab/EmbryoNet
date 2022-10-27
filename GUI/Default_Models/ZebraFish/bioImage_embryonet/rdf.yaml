@@ -1,0 +1,87 @@
+attachments:
+  files:
+    - ./EmbryoNet_labels.txt
+authors:
+  - {name: Daniel Capek }
+  - {name: Matvey Safroshkin }
+  - {name: Hernan Morales }
+  - {name: Grigory Arutyunov }
+  - {name: Nikan Toulny }
+  - {name: Patrick Mueller }
+  
+cite:
+  - doi: https://doi.org/10.1038/s41592-019-0658-6
+    text: >-
+      ToDo: change  ### Ouyang, W., Winsnes, C.F., Hjelmare, M. et al. Analysis of the Human
+      Protein Atlas Image Classification competition. Nat Methods 16, 1254–1261
+      (2019).
+covers:
+  - ./phenotypes_features.png
+description: EmbryoNet Model by embryoNet Team
+documentation: ./README.md
+format_version: 0.4.0
+inputs:
+  - axes: bcyx
+    data_range: [0, 255]
+    data_type: float32
+    description: Embryo image (jpeg or png)
+    name: data
+    shape: [1, 3, 224, 224]
+
+  - axes: bcyx
+    data_range: [0, 1]
+    data_type: float32
+    description: EmbryoAge channel. Same as t_for_fc but repeated.  
+    name: t_for_conv
+    shape: [1, 1 ,224 ,224]
+    
+  - axes: bc
+    data_range: [0, 1]
+    data_type: float32
+    description: Embryo age for fc layer. 0 = 0hpf, 1 = 24 hpf (hpf = hours post fertilization)
+    name: t_for_fc 
+    shape: [1, 1]
+   
+license:  GPL-3.0
+name: EmbryoNet base model
+
+outputs:
+  - axes: c
+    data_range: [0, inf]
+    data_type: float32
+    description: protein localization pattern classes
+    name: output 
+    shape: [14]
+tags:
+  - classification
+  - ResNet-18
+  - Embryology
+  - onnx
+  - Embryos 
+
+test_inputs:
+  - ./input_test_image.npy
+  - ./input_test_time_for_conv.npy
+  - ./input_test_time_for_fc.npy  
+ 
+
+test_outputs:
+  - ./result.npy 
+  
+timestamp: '2021-09-21T12:00:12.000Z'
+type: model
+version: 0.1.1
+weights:
+  onnx:
+    authors:
+      - {name: Daniel Capek }
+      - {name: Matvey Safroshkin }
+      - {name: Hernan Morales }
+      - {name: Grigory Arutyunov }
+      - {name: Nikan Toulny }
+      - {name: Patrick Mueller }
+    #sha256: #TODO 0ef125632b0058b2f04448de56dc23339fcbfe4f628601e836e17cef6f344e3f
+    source: ./EmbryoNet_GPU_batch_1.onnx
+    opset_version: 7 
+links:
+  - Embryonet.de 
