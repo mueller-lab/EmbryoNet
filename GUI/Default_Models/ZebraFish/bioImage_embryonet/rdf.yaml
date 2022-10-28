@@ -6,7 +6,7 @@ authors:
   - {name: Matvey Safroshkin }
   - {name: Hernan Morales }
   - {name: Grigory Arutyunov }
-  - {name: Nikan Toulny }
+  - {name: Nikan Toulany }
   - {name: Patrick Mueller }
   
 cite:
@@ -49,7 +49,7 @@ outputs:
   - axes: c
     data_range: [0, inf]
     data_type: float32
-    description: protein localization pattern classes
+    description: embryo phenotype classification probability 
     name: output 
     shape: [14]
 tags:
@@ -57,7 +57,8 @@ tags:
   - ResNet-18
   - Embryology
   - onnx
-  - Embryos 
+  - Embryo
+  - developmental biology 
 
 test_inputs:
   - ./input_test_image.npy
@@ -78,7 +79,7 @@ weights:
       - {name: Matvey Safroshkin }
       - {name: Hernan Morales }
       - {name: Grigory Arutyunov }
-      - {name: Nikan Toulny }
+      - {name: Nikan Toulany }
       - {name: Patrick Mueller }
     #sha256: #TODO 0ef125632b0058b2f04448de56dc23339fcbfe4f628601e836e17cef6f344e3f
     source: ./EmbryoNet_GPU_batch_1.onnx
