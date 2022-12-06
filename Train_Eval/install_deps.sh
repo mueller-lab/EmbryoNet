@@ -23,4 +23,5 @@ while read requirement; do conda install --yes $requirement; done < requirements
 
 pip install opencv-python
 pip install albumentations
-
+pip install -U typing_extensions
+pip install openpyxl
