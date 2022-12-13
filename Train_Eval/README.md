@@ -14,6 +14,6 @@ To reproduce environment:
 
 1) Open terminal window (<b>cmd not PowerShell! </b>)
 2) In opened terminal window `run create_v_env.bat` 
-3) After all dependencies are installed, close all opened terminal windows 
+3) Run `install_deps.bat` . After all dependencies are installed, close all opened terminal windows 
 4) Run `activate_env.bat`
 5) In opened command line window you can run command line tools
