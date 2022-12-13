@@ -47,4 +47,6 @@ typing-extensions==3.7.4.3 ^
 XlsxWriter==1.3.7 ^
 xmltodict==0.12.0 ^
 tensorboard ^
-tensorboardx
+tensorboardx ^
+xlrd ^
+openpyxl 
