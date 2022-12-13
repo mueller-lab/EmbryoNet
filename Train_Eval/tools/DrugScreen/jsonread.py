@@ -1,4 +1,5 @@
 import argparse
+import pathlib
 from collections import Counter
 import glob
 import json
@@ -22,7 +23,7 @@ class DrugScreenJsonReader:
     )()
 
     """
-    path_params = "D:/drugscreen_parameters.json"
+    path_params = "./drugscreen_parameters.json"
 
     def __init__(self, num_plate, num_screen, path_src, path_dst, sign_dir):
         self.num_plate = int(num_plate)
@@ -31,8 +32,7 @@ class DrugScreenJsonReader:
         self.path_src = path_src
         self.sign_dir = sign_dir
 
-        self.parameters = self.init_params()
-        self.df_drugs = self.init_df_drugs()
+        self.parameters = self.fn_json_load(self.path_params)
 
         self.center_distance_limit = 750
         self.center_image = (1024, 1024)
@@ -57,48 +57,6 @@ class DrugScreenJsonReader:
         with open(path_json, 'rb') as file_json:
             content = json.load(file_json)
         return content
-
-    def fn_json_read(self, path_json):
-        """
-        Load JSON file and retrieve position information of well within microtiter plate.
-        """
-        content = self.fn_json_load(path_json)
-        well_file = content['source_name']
-        position = f'{str(self.num_plate)}-{str(well_file[1])}{str(well_file[3:5])}'
-        return content, position
-
-    def init_params(self):
-        """
-        Load parameters from parameter JSON file.
-        """
-        parameters = self.fn_json_load(self.path_params)
-        if self.num_screen == 2840:
-            parameters = {'colors': parameters['colors'],
-                          'path_df_drugs': parameters['path_temp_2840'],
-                          'cols_df_drugs': parameters['cols_temp_2840'],
-                          'indx_df_drugs': 'Plate Location',
-                          'cols_detections': parameters['cols_detections']}
-        elif self.num_screen == 2843:
-            parameters = {'colors': parameters['colors'],
-                          'path_df_drugs': parameters['path_temp_2843'],
-                          'cols_df_drugs': parameters['cols_temp_2843'],
-                          'indx_df_drugs': 'Plate location',
-                          'cols_detections': parameters['cols_detections']}
-        else:
-            raise KeyError(f'[{self.__class__.__name__}][init_params] Wrong screen key.')
-        return parameters
-
-    def init_df_drugs(self):
-        """
-        Load treatment details as dataframe from library information
-        CSV sheet.
-        """
-        file_csv_drugs = pd.read_csv(self.parameters['path_df_drugs'],
-                                     sep=';')
-        df_drugs = pd.DataFrame(file_csv_drugs,
-                                columns=self.parameters['cols_df_drugs'])
-        df_drugs = df_drugs.set_index(self.parameters['indx_df_drugs'])
-        return df_drugs
 
     def count_types(self, detection_list):
         """
@@ -135,8 +93,6 @@ class DrugScreenJsonReader:
         most_common = None
 
         for count in counter_object:
-            #print(count)
-            #print(most_common)
             if int(count[1]) > counter_max:
                 counter_max = int(count[1])
                 name_undecided = name_undecided + '--' + count[0]
@@ -152,8 +108,8 @@ class DrugScreenJsonReader:
 
     def detections_df_get(self, paths_jsons):
         """
-        Count detections from JSON files for complete plate and
-        store as dataframe with treatment information.
+        Count detections from JSON files for complete plate
+        and store as dataframe with treatment information.
         """
         df_detections = pd.DataFrame(columns=self.parameters['cols_detections'])
         for well_index in paths_jsons:
@@ -162,35 +118,34 @@ class DrugScreenJsonReader:
 
             for i in range(len(files_jsons)):
                 path_json = paths_jsons[well_index][i]
-                labels, position = self.fn_json_read(path_json)
+                labels = self.fn_json_load(path_json)
                 detections = self.count_types(labels['detection_list'])
                 detections_timestamps[i] = detections
                 
-            print(f'[INFO] Working on well: {well_index} - {position}'.ljust(self.ljust))
+            print(f'[INFO] Working on well: {well_index}'.ljust(self.ljust))
             
             detections_filtered = self.detections_filter(detections_timestamps)
             
             counts, detection_all, detection_border, \
                 detection_center = self.detections_evaluate(detections_filtered)
 
-            df_detections.loc[position] = [counts['UNKNOWN'],
-                                           counts['NORMAL'],
-                                           counts['NODAL'],
-                                           counts['BOOM'],
-                                           counts['BMP'],
-                                           counts['WNT'],
-                                           counts['PCP'],
-                                           counts['SHH'],
-                                           counts['RA'],
-                                           counts['FGF'],
-                                           counts['CUT'],
-                                           detection_all,
-                                           detection_border,
-                                           detection_center]
-            print('\n')
-
-        df_dst = self.df_drugs.join(df_detections, how='outer')
-        return df_dst
+            df_detections.loc[well_index] = [well_index,
+                                             counts['UNKNOWN'],
+                                             counts['NORMAL'],
+                                             counts['NODAL'],
+                                             counts['BOOM'],
+                                             counts['BMP'],
+                                             counts['WNT'],
+                                             counts['PCP'],
+                                             counts['SHH'],
+                                             counts['RA'],
+                                             counts['FGF'],
+                                             counts['CUT'],
+                                             detection_all,
+                                             detection_border,
+                                             detection_center]
+        df_detections = df_detections.set_index('index_well')
+        return df_detections
 
     def detections_evaluate(self, detections):
         """
@@ -201,9 +156,6 @@ class DrugScreenJsonReader:
         counts_border = self.detections_counts.copy()
         counts_center = self.detections_counts.copy()
         
-        #print("before !!!!!!!!!!!!!!!!!!!!!!!!!!")
-        #print(counts)
-        
         for detection in detections:
             counts[detections[detection][0]] += 1
 
@@ -212,8 +164,6 @@ class DrugScreenJsonReader:
             else:
                 counts_center[detections[detection][0]] += 1
 
-        #print("after !!!!!!!!!!!!!!!!!!!!!!!!!!")
-        print(counts)
         counter_all = Counter(counts)
         counter_border = Counter(counts_border)
         counter_center = Counter(counts_center)
@@ -271,34 +221,43 @@ class DrugScreenJsonReader:
 
     def detections_df_save(self, df_output):
         """Save dataframe to Excel file."""
-        df_output = df_output[
-            (df_output['Plate number'] == float(self.num_plate)) | (df_output['Plate number'].isnull())]
-
         if self.path_dst.endswith('.xlsx'):
             pass
         else:
-            self.path_dst = f'{self.path_dst}/{self.num_screen}evaluation_drug_screen_plate{str(self.num_plate)}.xlsx'
+            self.path_dst = f'{self.path_dst}/{self.num_screen}' \
+                            f'evaluation_drug_screen_plate' \
+                            f'{str(self.num_plate)}.xlsx'
             self.path_dst = self.path_dst.replace('\\', '/')
 
         df_output.to_excel(self.path_dst)
 
     def paths_jsons_get(self):
         """
-        Load filepaths of JSON files containing EmbryoNet generated predictions.
+        Load filepaths of JSON files containing
+        EmbryoNet generated predictions.
+
+        Parameters
+        ----------
+        self
+
+        Returns
+        -------
+        paths_jsons: dict
+            Dictionary with keys of well directory names
+            and values of lists of sorted image paths.
         """
-        paths_jsons = {}
-        platepath = os.path.split(self.path_src)
-        for well_letter in string.ascii_uppercase[:8]:
-            for well_number in range(1, 13):
-                well_position = well_letter + str(well_number).zfill(3)
-                wellName = platepath[1] + "-" + well_position + "--PO01"
-                pattern_glob = f'{self.path_src}/{wellName}/{self.sign_dir}/*.json'
-#                pattern_glob = f'{self.path_src}/{well_position}/{self.sign_dir}/*.json'
-                paths_jsons[well_position] = sorted(glob.glob(pattern_glob))
-                #print(glob.glob(pattern_glob))
-                #print(f'{well_position}, {len(paths_jsons[well_position])}'.ljust(50), end='\r')
-        
-        #print("paths_jsons : ", paths_jsons)
+        paths_jsons = dict()
+
+        paths_wells = [
+            p_dir for p_dir in
+            sorted(glob.glob(f"{self.path_src}/*/"))
+            if os.path.isdir(p_dir)
+        ]
+        for path_well in paths_wells:
+            well_position = str(pathlib.PurePath(path_well).stem)
+            pattern_glob = f'{path_well}/{self.sign_dir}/*.json'
+            paths_jsons[well_position] = sorted(glob.glob(pattern_glob))
+
         return paths_jsons
 
 
@@ -321,8 +280,6 @@ if __name__ == "__main__":
                         help='Indicates which library is being analyzed. Either 2840 or 2843.',
                         required=True)
     args = parser.parse_args()
-    
-
 
     jsonreader = DrugScreenJsonReader(args.plate_number,
                                       args.screen_number,

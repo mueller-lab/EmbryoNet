@@ -1,0 +1,57 @@
+{
+  "colors": {
+    "UNKNOWN": "#000000",
+    "NODAL": "#378a5e",
+    "BMP": "#ea3644",
+    "FGF": "#3063b5",
+    "NORMAL": "#ffffff",
+    "WNT": "#87847f",
+    "RA": "#523b81",
+    "BOOM": "#fc63fa",
+    "PCP": "#f3e638",
+    "SHH": "#f5823c",
+    "UNDECIDED": "#9dbfb4"
+  },
+  "cols_detections": [
+    "index_well",
+    "UNKNOWN",
+    "NORMAL",
+    "NODAL",
+    "BOOM",
+    "BMP",
+    "WNT",
+    "PCP",
+    "SHH",
+    "RA",
+    "FGF",
+    "CUT",
+    "MajorityVote",
+    "Bordered",
+    "Centered"
+  ],
+  "path_temp_2840": "./BML-2840.csv",
+  "path_temp_2843": "./BML-2843.csv",
+  "cols_temp_2840": [
+      "Plate part number",
+      "Plate number",
+      "Plate Location",
+      "IUPAC Name",
+      "Name",
+      "CAS",
+      "Catalog number",
+      "Concentration",
+      "Compound description",
+      "Solvent"
+  ],
+  "cols_temp_2843": [
+    "Plate location",
+    "Plate part number",
+    "Plate number",
+    "Catalog number",
+    "Name",
+    "CAS #",
+    "Mol. Wt.",
+    "Concentration",
+    "Solvent"
+  ]
+}
