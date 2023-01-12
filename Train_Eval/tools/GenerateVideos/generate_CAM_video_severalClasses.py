@@ -250,8 +250,9 @@ def main():
                 
 
             realtime = "{:.0f}".format(1440 * time)
-            maxprob = "{:.2f}".format( 100 * CAMlimits[2])
-            label = "embryo at t = " + str(realtime) + " min"
+            time_hpf = "{:.2f}".format(2+(1440 * time / 60))
+            maxprob = "{:.2f}".format(100 * CAMlimits[2])
+            label = "embryo at t = " + str(time_hpf) + " hpf"
             lwidth, lheight, baseline = size(label,font,fontScale,lineType)
             dx = int(0.5*(embryo_width-lwidth))
             dy = int(0.5*lheight)
