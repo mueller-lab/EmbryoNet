@@ -33,7 +33,7 @@ There are two tools implemented with a graphical user interface:
 
 To compile the GUI, please follow the <a href="https://github.com/mueller-lab/EmbryoNet/tree/main/GUI"><b>instructions and tutorial</b></a>.
 
-You can also download the compiled GUI <a href="https://drive.google.com/file/d/1NIqCi4z8yh8RP_hnPSGnpzHgq_1C9qtU/edit"><b>installers for Windows</b></a>.
+You can also download the compiled GUI <a href="https://cloud.uni-konstanz.de/index.php/s/pbW7YF9xNbkedqS"><b>installers for Windows</b></a>.
 
 
 
@@ -55,7 +55,7 @@ The Demo folder contains a small data set of images and the corresponding instru
 
 ## Training and evaluation data sets 
 
-The data is available from www.EmbryoNet.de and https://dx.doi.org/10.48606/15
+The data is available from https://embryonet.uni-konstanz.de and https://dx.doi.org/10.48606/15
 
 ## Thanks  
 
