@@ -1,5 +1,5 @@
 # EmbryoClassifier and EmbryoLabeler
-How to build EmbryoClassifier - You can also follow the step-by-step <a href="http://embryonet.de/tutorial.html"><b> Video Tutorial</b></a> 
+How to build EmbryoClassifier - You can also follow the step-by-step <a href="https://embryonet.uni-konstanz.de/tutorial.html"><b> Video Tutorial</b></a> 
 1) Install <a href="https://cmake.org/download/"><b>CMake</b></a> 
 2) Install <a href="https://developer.nvidia.com/cuda-11-4-4-download-archive/"><b>Cuda 11.4</b></a>   
 3) Install <a href= "https://docs.microsoft.com/de-de/visualstudio/releases/2019/history"> <b>Visual Studio 2019</b> </a>
@@ -19,15 +19,15 @@ Starting from 5) you can alternatively continue in command line with the activat
 1) cd \<GUI path\>
 2) mkdir build && cd build
 3) cmake .. -G"Visual Studio 16 2019" -A x64
-4) Open the project in Microsoft Visual Studio 2019. The project should be located at "path_to_build" e.g. "C:\EmbryoNet\GUI\build\Embryo_classifier.sln".
-5) Change the configuration mode to "Release". 
-6) Select all targets in the solution explorer, right-click on them and choose "Build selection".
+4) Open the project in Microsoft Visual Studio 2019. The project should be located at "path_to_build" e.g. "C:\EmbryoNet\GUI\build\Embryo_classifier.sln"
+5) Change the configuration mode to "Release"
+6) Select all targets in the solution explorer, right-click on them and choose "Build selection"
 7) The executables EmbryoLabeler and EmbryoClassifier (CPU and GPU) will be generated at the following paths: "$path_to_build\CVStudio_sources\FishLabeler\Release\FishLabeler.exe", "$path_to_build\CVStudio_sources\FishClassifier_gui\CPU\Release\FishClassifier_gui_CPU.exe" and "$path_to_build\CVStudio_sources\FishClassifier_gui\GPU\Release\FishClassifier_gui_CGU.exe", respectively.
 
 
 Requirements
 
 - Standard PC, 16Gb RAM, Windows 10
-- For GPU calculations: Nvidia Graphic Card and CUDA 11.4 installed. The installation and demo were tested in Windows10
+- For GPU calculations: Nvidia Graphic Card and CUDA 11.4 installed. The installation and demo were tested in Windows10.
 
-Installation takes 10 minutes after Visual Studio is installed (10 minutes) and the Data is downloaded (23 minutes)
+Installation takes 10 minutes after Visual Studio is installed (10 minutes) and the data is downloaded (23 minutes).
