@@ -6,31 +6,41 @@
 //This software is distributed under the terms of the GNU General Public License
 //=======================================================================================================================
 
+#pragma once 
 
-#include <QApplication>
 
-#include "MainWindow.h"
-#include "Deployer.h"
+#include <QObject>
+#include <QTimer>
 
-int main(int argc, char **argv)
+class PlayerOld: public QObject
 {
-   
+    Q_OBJECT
+ 
 
+public:
 
+    PlayerOld(QObject* parent = nullptr);
+    ~PlayerOld();
+    
+    
+public slots:
 
-  
-    QApplication app(argc, argv);
-    app.setWindowIcon(QIcon("EmbryoLabeler.ico"));
-    MainWindow mainWindow;
-    Deployer d(&mainWindow);
+    void play();
+    void pause();
+    void nextFrame();
+    void prevFrame();
+    void toFrame(const unsigned int & f) ;
+    void reset();
+    void setFramesLength(const unsigned int length);
 
-    mainWindow.show();
+signals:
 
-    const int exitStatus = app.exec();
+    void pushFrame(const unsigned int);
 
+private:
 
-    return exitStatus;
+    QTimer*  m_timer = nullptr;
+    unsigned int m_length = 0;
+    unsigned int m_current = 0;
 
-}
-
-
+};

@@ -29,9 +29,12 @@ class EmbryoCounter : public QWidget
     QSignalMapper* m_signalMapper = nullptr;
     QVBoxLayout* m_mainLayout;
 public:
+    
     EmbryoCounter();
     ~EmbryoCounter();
+
     void resetCounter(const std::vector <std::pair<QString, QColor>>& embryoClasses);
+
 public slots:
 
     void setCounter(const std::vector<int>& counters);

@@ -9,13 +9,14 @@
 #include "AnnoWidget.h"
 
 #include <QResizeEvent>
+#include <qsizepolicy.h>
 
 AnnoWidget::AnnoWidget(QWidget* parent) : QLabel(parent)
 {
 	this->setScaledContents(true);
 
-	const int minimumHeight = 500;
-	const int minimumWidth = 500;
+	const int minimumHeight = 600;
+	const int minimumWidth = 600;
 
 	const int defaultWidth = 600;
 	const int defaultHeight = 600;
@@ -23,6 +24,7 @@ AnnoWidget::AnnoWidget(QWidget* parent) : QLabel(parent)
 	this->setMinimumHeight(minimumHeight);
 	this->setMinimumWidth(minimumWidth);
 	this->resize(defaultWidth, defaultHeight);
+	this->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 }
 
 AnnoWidget::~AnnoWidget() {}

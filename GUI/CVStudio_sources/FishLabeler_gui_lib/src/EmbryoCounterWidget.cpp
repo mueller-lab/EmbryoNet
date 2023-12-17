@@ -93,7 +93,9 @@ void EmbryoCounter::resetCounter(const std::vector <std::pair<QString, QColor>>&
     }
         
      
-    
+    unsigned int BUTTONSIZE = 30;
+    //TODO REFACTOR
+    this->setMinimumHeight(m_classLayouts.size()* BUTTONSIZE);
 
     this->setLayout(m_mainLayout);
     this->show();

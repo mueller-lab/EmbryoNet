@@ -97,6 +97,7 @@ void Loader::load(const QString& path)
     {
         return;
     }
+
     boost::filesystem::directory_iterator jsonIterator (pathToJsonFolder);
     boost::filesystem::directory_iterator imageIterator(pathToImageFolder);
     int jsonscnt = std::count_if(jsonIterator, boost::filesystem::directory_iterator(), 
@@ -279,8 +280,6 @@ void Loader::save(const std::vector<std::pair<std::string, nlohmann::json> >& im
         renamedJson["imageId"] = imageId;
      
         imageId++;
-
-
         std::ofstream filestream(saveJsonDirectory.string() + std::string("/") + boost::filesystem::basename(source_name) + std::string(".json"));
         filestream << renamedJson.dump(4);
     }

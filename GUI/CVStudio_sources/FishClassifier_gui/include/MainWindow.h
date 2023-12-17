@@ -52,7 +52,6 @@ private:
 	QPushButton* m_settingsButton = nullptr;
 	QPushButton* m_licenseButton = nullptr;
 
-
 	QVBoxLayout* m_progressBarLayout = nullptr;
 	QLabel* m_progressBarLabel = nullptr;
 	QProgressBar* m_loadProgressBar = nullptr;

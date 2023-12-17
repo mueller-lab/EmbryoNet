@@ -21,7 +21,7 @@ Deployer::~Deployer()
 void Deployer::construct()
 {
 	m_loader = new Loader(this);
-	m_player = new Player(this);
+	m_player = new PlayerOld(this);
 	m_annovis = new AnnoVis(this);
 }
 
@@ -33,6 +33,7 @@ void Deployer::connect()
 		m_annovis,
 		&AnnoVis::selectAll
 	);
+
 	QObject::connect(
 		this->m_mainWindow,
 		&MainWindow::unselectAll,
@@ -46,8 +47,6 @@ void Deployer::connect()
 		m_annovis,
 		&AnnoVis::highlightUnknowns
 	);
-
-
 
 		QObject::connect(
 			m_loader,
@@ -88,26 +87,26 @@ void Deployer::connect()
 		m_loader,
 		&Loader::sendFrameCount,
 		m_player,
-		&Player::setFramesLength
+		&PlayerOld::setFramesLength
 	);
 
 	QObject::connect(
 		m_mainWindow,
 		&MainWindow::startButtonClicked,
 		m_player,
-		&Player::play
+		&PlayerOld::play
 	);
 
 	QObject::connect(
 		m_mainWindow,
 		&MainWindow::stopButtonClicked,
 		m_player,
-		&Player::pause
+		&PlayerOld::pause
 	);
 
 	QObject::connect(
 		m_player,
-		&Player::pushFrame,
+		&PlayerOld::pushFrame,
 		m_mainWindow,
 		&MainWindow::setFrameIndex
 	);
@@ -116,7 +115,7 @@ void Deployer::connect()
 		m_mainWindow,
 		&MainWindow::itemChanged,
 		m_player,
-		&Player::toFrame
+		&PlayerOld::toFrame
 	);
 
 	QObject::connect(
@@ -125,6 +124,8 @@ void Deployer::connect()
 		m_mainWindow,
 		&MainWindow::showPicture
 	);
+
+	// done till here
 
 	QObject::connect(
 		m_mainWindow,
@@ -147,6 +148,7 @@ void Deployer::connect()
 		m_annovis,
 		&AnnoVis::getWheelRotation
 	);
+
 	QObject::connect(
 		m_mainWindow,
 		&MainWindow::sendConcentration,
@@ -213,7 +215,7 @@ void Deployer::connect()
 
 	QObject::connect(
 		m_mainWindow,
-		&MainWindow::sendRotation,
+		&MainWindow::sendRotationsendRotation,
 		m_annovis,
 		&AnnoVis::getRotation
 	);

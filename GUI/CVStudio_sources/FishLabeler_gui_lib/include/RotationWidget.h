@@ -55,19 +55,22 @@ class RotationWidget : public QWidget
     QPushButton* m_subtract_5x_button = nullptr;
     QPushButton* m_subtract_5y_button = nullptr;
     QPushButton* m_subtract_5z_button = nullptr;
-
+    
 public:
     RotationWidget();
     ~RotationWidget();
     void resetRotation();
+
 
 public slots:
     void set_x(const int& x); 
     void set_y(const int& y);
     void set_z(const int& z);
 
+    void recieveRotation(const QVector3D& rot);
+
 signals:
-    void send_x_y_z(const int &x, const int& y, const int& z );
+    void send_rot(const QVector3D& rot );
 
 private:
     void allocate(); 

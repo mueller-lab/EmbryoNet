@@ -14,7 +14,7 @@
 
 #include "Loader.h"
 #include "MainWindow.h"
-#include "Player.h"
+#include "PlayerOld.h"
 #include "AnnoVis.h"
 #include "ChooseFolderWidget.h"
 
@@ -36,7 +36,7 @@ private:
 
     Loader* m_loader = nullptr;
     MainWindow* m_mainWindow = nullptr;
-    Player* m_player = nullptr;
+    PlayerOld* m_player = nullptr;
     AnnoVis* m_annovis = nullptr;
     ChooseFolderWidget* m_chooseFolderWidget = nullptr;
 

@@ -29,9 +29,10 @@ add_executable(${Target}  ${FISHLABELER_SOURCES}  )
 endif()
 
 target_include_directories(${Target} PRIVATE ${FishLabeler_gui_INCLUDE}  ${Target_include})
-target_include_directories(${Target} PUBLIC ${CVStudio_include}/CVUtils/include)
 
 target_link_libraries(${Target} ${FishLabeler_gui_LIB})
+
+target_include_directories(${Target} PUBLIC ${CVStudio_include}/CVUtils/include)
 target_link_libraries(${Target} ${CVStudio_lib}/CVUtils.lib)
 
 

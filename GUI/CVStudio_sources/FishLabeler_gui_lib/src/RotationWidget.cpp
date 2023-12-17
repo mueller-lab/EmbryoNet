@@ -1,9 +1,29 @@
 #include <RotationWidget.h>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
+#include <qvector3d.h>
+#include <qvalidator.h>
+namespace
+{
 
+int normalizedAngle(const int val)
+{
+    int output = val;
 
+    if (output < 0)
+    {
+        output = 360 + (output % 360);
+    }
 
+    if (output >= 360)
+    {
+        output = output % 360;
+    }
+
+    return output;
+}
+
+} // namespace
 
 RotationWidget::RotationWidget()
 {
@@ -140,28 +160,84 @@ void RotationWidget::connectInternal()
         this->set_z(this->z - 5);
     }
     );
-   
+    QObject::connect
+    (
+        this->m_zLineEdit,
+        &QLineEdit::returnPressed,
+        [this]()
+        {
+            int val = 0;
+            val = m_zLineEdit->text().toInt();
+            this->set_z(val);
+        }
+    );
+
+    QObject::connect
+    (
+        this->m_yLineEdit,
+        &QLineEdit::returnPressed,
+        [this]()
+    {
+        int val = 0;
+        val = m_yLineEdit->text().toInt();
+        this->set_y(val);
+    }
+    );
+    
+    QObject::connect
+    (
+        this->m_xLineEdit,
+        &QLineEdit::returnPressed,
+        [this]()
+    {
+        int val = 0;
+        val = m_xLineEdit->text().toInt();
+        this->set_x(val);
+    }
+    );
+
+
 
 }
 
 
 void RotationWidget::set_x(const int& val)
 {
-    this->x = val;
+    this->x = normalizedAngle(val);
     this->m_xLineEdit->setText(QString::number(this->x));
+   
+    emit send_rot(QVector3D(x,y,z));
+
 }
 
 void RotationWidget::set_y(const int& val)
 {
-    this->y = val;
+    this->y = normalizedAngle(val);
     this->m_yLineEdit->setText(QString::number(this->y));
+
+    emit send_rot(QVector3D(x, y, z));
+
 }
 
 void RotationWidget::set_z(const int& val)
 {
-    this->z = val;
+    this->z = normalizedAngle(val);
     this->m_zLineEdit->setText(QString::number(this->z));
+    emit send_rot(QVector3D(x, y, z));
 }
+
+
+void RotationWidget::recieveRotation(const QVector3D& rot)
+{
+    this->m_xLineEdit->setText(QString::number(rot.x()));
+    
+    this->x = rot.x();
+    this->m_yLineEdit->setText(QString::number(rot.y()));
+    this->y = rot.y();
+    this->m_zLineEdit->setText(QString::number(rot.z()));
+    this->z = rot.z();
+}
+
 
 
 void RotationWidget::allocate()
@@ -175,8 +251,11 @@ void RotationWidget::allocate()
     z_label = new QLabel(QString("z: "));;
 
     m_xLineEdit = new QLineEdit("0");
+    m_xLineEdit->setValidator(new QIntValidator(0,360, this));
     m_yLineEdit = new QLineEdit("0");
+    m_yLineEdit->setValidator(new QIntValidator(0, 360, this));
     m_zLineEdit = new QLineEdit("0");
+    m_zLineEdit->setValidator(new QIntValidator(0, 360, this));
 
     m_add_x_button = new QPushButton("+");
     m_add_y_button = new QPushButton("+");
