@@ -7,7 +7,7 @@
 //=======================================================================================================================
 
 #include "Deployer.h"
-
+#include <qthread.h>
 Deployer::Deployer(MainWindow* mainWindow, QObject* parent) : QObject(parent), m_mainWindow(mainWindow)
 {
 	construct();
@@ -20,13 +20,17 @@ Deployer::~Deployer()
 
 void Deployer::construct()
 {
+	m_annovisThread = new QThread;
+	
 	m_loader = new Loader(this);
-	m_player = new PlayerOld(this);
 	m_annovis = new AnnoVis(this);
+	m_annovis->moveToThread(m_annovisThread);
+	m_annovisThread->start();
 }
 
 void Deployer::connect()
 {
+
 	QObject::connect(
 		this->m_mainWindow,
 		&MainWindow::selectAll,
@@ -48,12 +52,12 @@ void Deployer::connect()
 		&AnnoVis::highlightUnknowns
 	);
 
-		QObject::connect(
-			m_loader,
-			&Loader::sendImages2JSONs,
-			m_annovis,
-			&AnnoVis::setImages2JSONs
-		);
+	QObject::connect(
+		m_loader,
+		&Loader::sendImages2JSONs,
+		m_annovis,
+		&AnnoVis::setImages2JSONs
+	);
 
 	QObject::connect(
 		m_mainWindow,
@@ -77,55 +81,18 @@ void Deployer::connect()
 	);
 
 	QObject::connect(
-		m_loader,
-		&Loader::sendFrameCount,
-		m_mainWindow,
-		&MainWindow::setSlider
-	);
-
-	QObject::connect(
-		m_loader,
-		&Loader::sendFrameCount,
-		m_player,
-		&PlayerOld::setFramesLength
-	);
-
-	QObject::connect(
-		m_mainWindow,
-		&MainWindow::startButtonClicked,
-		m_player,
-		&PlayerOld::play
-	);
-
-	QObject::connect(
-		m_mainWindow,
-		&MainWindow::stopButtonClicked,
-		m_player,
-		&PlayerOld::pause
-	);
-
-	QObject::connect(
-		m_player,
-		&PlayerOld::pushFrame,
-		m_mainWindow,
-		&MainWindow::setFrameIndex
-	);
-
-	QObject::connect(
-		m_mainWindow,
-		&MainWindow::itemChanged,
-		m_player,
-		&PlayerOld::toFrame
-	);
-
-	QObject::connect(
 		m_annovis,
 		&AnnoVis::sendImage,
 		m_mainWindow,
 		&MainWindow::showPicture
 	);
 
-	// done till here
+	QObject::connect(
+		m_annovis,
+		&AnnoVis::sendArrows,
+		m_mainWindow,
+		&MainWindow::setArrows
+	);
 
 	QObject::connect(
 		m_mainWindow,
@@ -157,14 +124,6 @@ void Deployer::connect()
 	);
 
 	QObject::connect(
-		m_mainWindow,
-		&MainWindow::sendRightClick,
-		m_annovis,
-		&AnnoVis::changeSingleEmbryoConfidence
-	);
-
-
-	QObject::connect(
 		m_loader,
 		&Loader::sendClasses,
 		m_mainWindow,
@@ -184,6 +143,14 @@ void Deployer::connect()
 		m_annovis,
 		&AnnoVis::clearTracks
 	);
+
+	QObject::connect(
+		m_annovis,
+		&AnnoVis::sendCounters,
+		m_mainWindow,
+		&MainWindow::recieveCounters
+	);
+
 	QObject::connect(
 		m_mainWindow,
 		&MainWindow::saveRequest,
@@ -200,24 +167,16 @@ void Deployer::connect()
 
 	QObject::connect(
 		m_mainWindow,
-		&MainWindow::sendConfident,
+		&MainWindow::sendRotation,
 		m_annovis,
-		&AnnoVis::setConfident
+		&AnnoVis::setRotation
 	);
 
 	QObject::connect(
 		m_annovis,
-		&AnnoVis::sendCounters,
+		&AnnoVis::sendRotation, 
 		m_mainWindow,
-		&MainWindow::recieveCounters
-	);
-
-
-	QObject::connect(
-		m_mainWindow,
-		&MainWindow::sendRotationsendRotation,
-		m_annovis,
-		&AnnoVis::getRotation
+		&MainWindow::getRotation
 	);
 
 }

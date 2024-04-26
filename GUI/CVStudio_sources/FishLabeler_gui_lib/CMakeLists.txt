@@ -33,6 +33,7 @@ target_link_libraries(${Target} ${Boost_LIBRARIES})
 set (FishLabeler_gui_LIB ${Target} PARENT_SCOPE)
 set (FishLabeler_gui_INCLUDE ${Target_include} PARENT_SCOPE)
 
-
+target_include_directories(${Target} PUBLIC ${CVStudio_include}/CVUtils/include)
+target_link_libraries(${Target} ${CVStudio_lib}/CVUtils.lib)
 
 

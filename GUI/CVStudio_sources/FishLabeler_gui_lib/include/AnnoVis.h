@@ -12,30 +12,17 @@
 
 #include <QColor>
 #include <QRect>
-
+#include <QVector3D>
 #include <QObject>
+#include <AnnoVisEmbryoBox.h>
 
-#define ENABLE_SWITCH_LOGIC 0
+#define ENABLE_SWITCH_LOGIC 1
 
 class AnnoVis : public QObject
 {
 	Q_OBJECT
 
-private:
-
-	struct EmbryoBox
-	{
-		QRect bbox;
-		size_t id;
-		QString className;
-		bool isClassConfident = false;
-		bool isHighlighted = false;
-		bool isConcentrationConfident = false;
-		bool isRotated = false;
-		QColor color;
-		float severe = 0;
-	};
-
+	
 private:
 
 	std::vector <std::vector <EmbryoBox>> m_imagesEmbryoBoxes;
@@ -84,6 +71,8 @@ public slots:
 	void wheelPress(const QPoint& pos);
 	void changeSingleEmbryoConfidence(const QPoint& pos);
 
+	void setRotation(const QVector3D& rotation);
+
 	void setConcentration(const int& concentration);
 	void setNewClass(const int& index);
 	void setConfident(const bool& confident);
@@ -92,7 +81,10 @@ public slots:
 	void getRotation();
 
 signals:
+	
+	void sendRotation(const QVector3D& vec);
 
+	void sendArrows(const QList<QVector2D>& positions, const QList<QVector3D>& rotations);
 	void sendImage(const QImage& img);
 	void save(const std::vector<std::pair<std::string, nlohmann::json> >& images2JSONs);
 	void sendCounters(const std::vector <int>& counters);

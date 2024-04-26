@@ -360,6 +360,7 @@ void EmbryoClassifier::setDefaultClass(const int defalutClass)
 {
 	m_defaultClass = defalutClass;
 }
+
 std::string EmbryoClassifier::getDefaultClassName() const
 {
 	return m_default_class_name;

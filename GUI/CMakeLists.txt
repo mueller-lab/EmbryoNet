@@ -34,3 +34,5 @@ add_subdirectory(CVStudio_sources/FishLabeler_gui_lib)
 
 add_subdirectory(CVStudio_sources/FishLabeler)
 add_subdirectory(CVStudio_sources/FishClassifier_gui) 
+
+add_subdirectory(CVStudio_sources/RotationFishLabeler)

@@ -18,13 +18,15 @@
 #include <QHBoxLayout>
 #include <QVBoxLayout>
 #include <QWidget>
-
+#include <qtabwidget.h>
 #include <QTimer>
 #include <QPoint>
 #include "AnnoWidget.h"
 #include <QLabel>
 
+#include <RotationWidget.h>
 #include <EmbryoCounterWidget.h>
+
 
 class MainWindow : public QWidget
 {
@@ -38,6 +40,8 @@ class MainWindow : public QWidget
     QHBoxLayout* m_sliderButton = nullptr;
     QVBoxLayout* m_startSliderLayout = nullptr;
     QVBoxLayout* m_rightLayout = nullptr;
+
+    QTabWidget* m_annotationTabWidget = nullptr;
 
     QVBoxLayout* m_helpLayout = nullptr;
     QPushButton* m_startButton = nullptr;
@@ -57,6 +61,7 @@ class MainWindow : public QWidget
     QTimer* m_playTimer = nullptr;
     AnnoWidget* m_picture = nullptr;
     EmbryoCounter* m_embryoCounter = nullptr;
+    RotationWidget *m_rotationWidget = nullptr;
     QShortcut* m_select_all_shortcut = nullptr;
     QShortcut* m_unselect_all_shortcut = nullptr;
     QShortcut* m_highlight_unknown_shortcut = nullptr;
@@ -100,19 +105,24 @@ signals:
     void startButtonClicked();
     void stopButtonClicked();
     void itemChanged(int i);
+
     void sendLeftClick(const QPoint& p);
+
     void sendRightClick(const QPoint& p);
     void wheelPress(const QPoint& p);
     void sendWheelRotation(const QPoint& pos, const QPoint& angle);
-    void sendRotation();
+
+    void sendRotationsendRotation();
 
 
     void sendClassChanged(const QString& className, const int& index);
     void sendEscape();
     void sendClass(const int &);
     void sendConcentration(const int & i);
+
     void saveRequest();
     void sendConfident(const bool & confident);
+
     void selectAll();
     void unselectAll();
     void highlightUnknowns();

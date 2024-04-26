@@ -109,8 +109,10 @@ protected:
 
             const cv::Point tl(tlx, tly);
             const cv::Point br(brx, bry);
-
             const cv::Rect bboxRect(tl, br);
+
+            const float starOffset = 0.8;
+            const cv::Point starPosition = starOffset * tl + (1.0f - starOffset) * br;
 
             const auto& probsJSON = detectionJSON["prob"];
             
@@ -120,15 +122,18 @@ protected:
                 embryoColor += static_cast<float>(probsJSON[i]) * m_embryoColors[i];
             }
             
-
             cv::rectangle(drawImage, bboxRect, embryoColor, 3);
-            
             const int id = static_cast<int>(detectionJSON["id"]);
 
             const cv::Point bboxCenter = 0.5 * (tl + br);
             cv::putText(drawImage, std::to_string(id), bboxCenter, 
                        cv::FONT_HERSHEY_SIMPLEX, 1.0, embryoColor, 2);
 
+            if (detectionJSON.count("isKeyFrame") && detectionJSON.get<bool>("isKeyFrame"))
+            {
+                cv::putText(drawImage, "*", starPosition,
+                    cv::FONT_HERSHEY_SIMPLEX, 1.0, embryoColor, 2);
+            }
         }
 
         return drawImage;

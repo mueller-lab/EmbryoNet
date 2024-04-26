@@ -6,9 +6,9 @@
 //This software is distributed under the terms of the GNU General Public License
 //=======================================================================================================================
 
-#include "Player.h"
+#include "PlayerOld.h"
 
-Player::Player(QObject* parent): QObject(parent)
+PlayerOld::PlayerOld(QObject* parent): QObject(parent)
 {
     m_timer = new QTimer(this);
 
@@ -17,17 +17,17 @@ Player::Player(QObject* parent): QObject(parent)
         m_timer,
         &QTimer::timeout,
         this,
-        &Player::nextFrame
+        &PlayerOld::nextFrame
     );
 }
 
 
-Player::~Player() 
+PlayerOld::~PlayerOld()
 {
     pause();
 }
 
-void Player::play()
+void PlayerOld::play()
 {
     if (m_current == m_length)
     {
@@ -39,12 +39,12 @@ void Player::play()
     m_timer->start(100 / 1);    
 }
 
-void Player::pause()
+void PlayerOld::pause()
 {
     m_timer->stop();
 }
 
-void Player::nextFrame()
+void PlayerOld::nextFrame()
 {
     if (m_current < m_length)
     {
@@ -57,7 +57,7 @@ void Player::nextFrame()
     }
 }
 
-void Player::prevFrame() 
+void PlayerOld::prevFrame()
 {
     if (m_current > 0)
     {
@@ -66,7 +66,7 @@ void Player::prevFrame()
     }
 }
 
-void Player::toFrame(const unsigned int& f) 
+void PlayerOld::toFrame(const unsigned int& f)
 {
     if ((f >= 0) && (f < m_length))
     {
@@ -75,13 +75,13 @@ void Player::toFrame(const unsigned int& f)
     emit pushFrame(m_current);
 }
 
-void Player::reset()
+void PlayerOld::reset()
 {
     m_current = 0;
     m_length = 0;
 }
 
-void Player::setFramesLength(const unsigned int length)
+void PlayerOld::setFramesLength(const unsigned int length)
 {
     m_length = length;
 }

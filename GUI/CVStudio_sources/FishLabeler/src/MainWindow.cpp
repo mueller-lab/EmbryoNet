@@ -15,6 +15,8 @@
 #include <qkeysequenceedit.h>
 #include <QKeySequence>
 #include <qapplication.h>
+
+
 #define TEST_MODE 0
 
 MainWindow::MainWindow(QWidget* parent) : QWidget(parent)
@@ -29,13 +31,14 @@ MainWindow::~MainWindow() {}
 void MainWindow::allocate()
 {
 	
+	m_annotationTabWidget = new QTabWidget();
+
 	m_select_all_shortcut = new QShortcut(QKeySequence("Ctrl+A"), this);;
 	m_unselect_all_shortcut = new QShortcut(QKeySequence("Ctrl+Z"), this);;
 	m_highlight_unknown_shortcut = new QShortcut(QKeySequence("Ctrl+Q"), this);;
 
 	m_save_shortcut = new QShortcut(QKeySequence("Ctrl+S"), this);;
 	m_open_shortcut = new QShortcut(QKeySequence("Ctrl+O"), this);;
-
 
 	m_mainLayout = new QGridLayout;
 	m_comboboxLayout = new QHBoxLayout;
@@ -61,6 +64,7 @@ void MainWindow::allocate()
 	m_helpButton = new QPushButton("Help");
 	m_helpLayout = new QVBoxLayout();
 	m_embryoCounter = new EmbryoCounter();
+	m_rotationWidget = new RotationWidget();
 	m_rightLayout = new QVBoxLayout();
 
 
@@ -79,7 +83,11 @@ void MainWindow::draw()
 	//m_picture->setPixmap(QPixmap("intro.jpg").scaled(QSize(500, 500)));
 	m_mainLayout->addWidget(m_picture, 0, 0);
 	m_rightLayout->addWidget(m_imageList);
-	m_rightLayout->addWidget(m_embryoCounter);
+	m_rightLayout->addWidget(m_annotationTabWidget);
+	m_annotationTabWidget->addTab(m_embryoCounter, QString("classes"));
+	m_annotationTabWidget->addTab(m_rotationWidget, QString("rotations"));
+
+	//m_rightLayout->addWidget(m_embryoCounter);
 	m_mainLayout->addLayout(m_rightLayout, 0, 1);
 	m_sliderLayout->addWidget(m_comboBox);
 	m_sliderLayout->addWidget(m_confident);
@@ -129,7 +137,6 @@ void MainWindow::connectInternal()
 	);
 
 
-	
 	QObject::connect(
 		this->m_save_shortcut,
 		&QShortcut::activated,
@@ -413,17 +420,7 @@ void MainWindow::keyPressEvent(QKeyEvent* e)
 	case Qt::Key_Escape:
 		emit sendEscape();
 		break;
-		//case Qt::Key_Alt:
-			//m_isconfident = true;
-			//m_confident->setText("CONFIDENT");
-			//emit sendConfident(m_isconfident);
-			//break;
-		//case Qt::Key_Shift:
-			//m_isconfident = false;
-			//m_confident->setText("NOT SURE");
 
-			//emit sendConfident(m_isconfident);
-			//break;
 	case Qt::Key_1:
 		emit sendClass(0); //BMP (B)
 		break;
@@ -444,7 +441,6 @@ void MainWindow::keyPressEvent(QKeyEvent* e)
 	case Qt::Key_N:
 		emit sendClass(2);  //NORMAL(N)
 		break;
-
 
 	case Qt::Key_4:
 		emit sendClass(3);  //UNKNOWN (U)

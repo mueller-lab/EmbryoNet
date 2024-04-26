@@ -14,7 +14,7 @@
 
 #include "Loader.h"
 #include "MainWindow.h"
-#include "PlayerOld.h"
+#include "Player.h"
 #include "AnnoVis.h"
 #include "ChooseFolderWidget.h"
 
@@ -22,6 +22,7 @@ class Deployer : public QObject
 {
     Q_OBJECT
 
+       QThread* m_annovisThread = nullptr;
 private:
 
     void connect();
@@ -36,7 +37,7 @@ private:
 
     Loader* m_loader = nullptr;
     MainWindow* m_mainWindow = nullptr;
-    PlayerOld* m_player = nullptr;
+   
     AnnoVis* m_annovis = nullptr;
     ChooseFolderWidget* m_chooseFolderWidget = nullptr;
 

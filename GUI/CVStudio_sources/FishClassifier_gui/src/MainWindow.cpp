@@ -125,15 +125,16 @@ void MainWindow::connectInternal()
 {
 	QObject::connect
 	(
-		this->m_loadButton,
+		m_loadButton,
 		&QPushButton::clicked,
 		this,
 		&MainWindow::prepareLoad
 	);
 
+
 	QObject::connect
 	(
-		this->m_imageList,
+		m_imageList,
 		&QListWidget::currentRowChanged,
 		this,
 		&MainWindow::itemChanged
@@ -141,7 +142,7 @@ void MainWindow::connectInternal()
 
 	QObject::connect
 	(
-		this->m_startButton,
+		m_startButton,
 		&QPushButton::clicked,
 		this,
 		&MainWindow::startProcessing
