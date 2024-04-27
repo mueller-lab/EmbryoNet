@@ -80,7 +80,7 @@ void AnnoWidget::initializeGL()
 {
     initializeOpenGLFunctions();
 
-    QString shaders_dir = "C:/Users/User/Downloads/Telegram Desktop/shaders/";
+    QString shaders_dir = "shaders/";
 
     // Shader to render arrows, arrows are renderen using a full-screen quad
     m_program_arrows = new QOpenGLShaderProgram(this);

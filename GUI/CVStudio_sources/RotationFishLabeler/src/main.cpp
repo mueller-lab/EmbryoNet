@@ -12,17 +12,26 @@
 #include "MainWindow.h"
 #include "Deployer.h"
 
+#include <iostream>
+
 int main(int argc, char **argv)
-{  
-    QApplication app(argc, argv);
-    app.setWindowIcon(QIcon("EmbryoLabeler.ico"));
-    MainWindow mainWindow;
-    Deployer d(&mainWindow);
+{
+    int exitStatus = -1;
+    try
+    {
+        QApplication app(argc, argv);
+        app.setWindowIcon(QIcon("EmbryoLabeler.ico"));
+        MainWindow mainWindow;
+        Deployer d(&mainWindow);
 
-    mainWindow.show();
+        mainWindow.show();
 
-    const int exitStatus = app.exec();
-
+        exitStatus = app.exec();
+    }
+    catch (const std::exception& e)
+    {
+        std::cout << e.what() << std::endl;
+    }
 
     return exitStatus;
 
