@@ -45,6 +45,8 @@ private:
 
 	int findClosestEmbryoIndex(const QPoint& p);
 
+	void updateRotation(const int embryoID, const QVector3D& rotation);
+
 public:
 
 	AnnoVis(QObject* parent = nullptr);
@@ -68,7 +70,11 @@ public slots:
 	void setImages2JSONs(const std::vector<std::pair<std::string, nlohmann::json> >& images2JSONs);
 	void setHighlighted(const QPoint& p);
 	void getWheelRotation(const QPoint& pos, const QPoint& angle);
+	void swapRotation(const QPoint& pos);
+
 	void wheelPress(const QPoint& pos);
+	
+
 	void changeSingleEmbryoConfidence(const QPoint& pos);
 
 	void setRotation(const QVector3D& rotation);

@@ -107,7 +107,12 @@ void Deployer::connect()
 		m_annovis,
 		&AnnoVis::wheelPress
 	);
-
+	QObject::connect(
+		m_mainWindow,
+		&MainWindow::sendRightClick,
+		m_annovis,
+		&AnnoVis::swapRotation
+	);
 
 	QObject::connect(
 		m_mainWindow,

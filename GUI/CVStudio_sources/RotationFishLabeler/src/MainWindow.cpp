@@ -183,8 +183,6 @@ void MainWindow::draw()
 	m_loadAction = m_loadSaveMenu->addAction("Load");
 	m_saveAction = m_loadSaveMenu->addAction("Save");
 
-
-
 	m_imageList_TabWidget->addTab(m_imageList_normal, "normal");
 	m_imageList_TabWidget->addTab(m_imageList_invert, "invert");
 
