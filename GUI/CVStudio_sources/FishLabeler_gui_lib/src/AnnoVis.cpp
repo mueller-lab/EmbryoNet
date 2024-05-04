@@ -224,7 +224,7 @@ void AnnoVis::redraw(const size_t& imageIndx)
     }
 
     QImage img(QString::fromStdString(m_images2JSONs[imageIndx].first));
-    //img.convertTo(QImage::Format_RGB888);
+    img.convertTo(QImage::Format_RGB888);
     m_currentIndex = imageIndx;
 
     std::vector<int> counters;
@@ -296,9 +296,7 @@ void AnnoVis::redraw(const size_t& imageIndx)
 
             textBox.setBottomLeft(new_BottomLeft);
             textBox.setTopRight(new_TopRight);
-
             const auto starPen = ((embryoBox.isHighlighted ? 1 : 0) + 1) *10* penWidth;
-
             drawText<true>(&img, textBox, embryoBox.color, starPen, QString::fromStdString("*"));
         }
     }

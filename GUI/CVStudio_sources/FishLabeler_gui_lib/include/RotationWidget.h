@@ -66,7 +66,6 @@ public slots:
     void set_x(const int& x); 
     void set_y(const int& y);
     void set_z(const int& z);
-
     void recieveRotation(const QVector3D& rot);
 
 signals:

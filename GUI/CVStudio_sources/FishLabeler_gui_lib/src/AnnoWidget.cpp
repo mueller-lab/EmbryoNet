@@ -41,6 +41,7 @@ void AnnoWidget::setImage(const QImage& img)
     try
     {
         m_img = img;
+        QImage::Format f = m_img.format();
         if (m_img.isNull())
         {
             return;
@@ -311,7 +312,6 @@ void AnnoWidget::mouseReleaseEvent(QMouseEvent* event)
     if (event->button() == Qt::RightButton) {
         emit sendRightClick(resizedPos);
     }
-
 }
 
 void AnnoWidget::wheelEvent(QWheelEvent* event)
@@ -326,7 +326,6 @@ void AnnoWidget::wheelEvent(QWheelEvent* event)
         pos.y()* (static_cast<double>(m_img.height()) / static_cast<double>(this->height())));
     emit sendWheelRotation(resizedPos, event->angleDelta() / 8 / 3);
 }
-
 
 /*
 void AnnoWidget::keyPressEvent( QKeyEvent* e)

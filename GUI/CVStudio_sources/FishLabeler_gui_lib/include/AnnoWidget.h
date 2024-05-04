@@ -41,7 +41,7 @@ signals:
     void sendWheelRotation(const QPoint& pos, const QPoint angleDelta);
     void wheelPress(const QPoint& p);
     void sendRightClick(const QPoint& p);
-   // void sendKey( const QKeyEvent *p);
+   //void sendKey( const QKeyEvent *p);
 
 
 

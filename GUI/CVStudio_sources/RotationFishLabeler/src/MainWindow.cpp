@@ -12,7 +12,9 @@ MainWindow::MainWindow(QWidget* parent) : QWidget(parent)
 	connectInternal();
 }
 
-MainWindow::~MainWindow() {}
+MainWindow::~MainWindow() 
+{
+}
 
 void MainWindow::allocate()
 {
