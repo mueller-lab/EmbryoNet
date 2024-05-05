@@ -30,6 +30,8 @@
 #include <QFile>
 #include <QTextStream>
 
+
+
 #define TEST_MODE 0
 namespace
 {
@@ -168,7 +170,7 @@ void AnnoVis::readImageEmbryoBoxes(const size_t imageIdx, const nlohmann::json& 
 		if (detection.count("concentrationConfident")) {
 			isConcentrationConfident = detection["concentrationConfident"].get<bool>();
 		}
-		QVector3D embryoRotation(90, 0, 0);
+		QVector3D embryoRotation(0, 0, 0);
 		if (detection.count("rotation_x"))
 		{
 			embryoRotation.setX(static_cast<float>(detection["rotation_x"]));
@@ -274,8 +276,8 @@ void AnnoVis::redraw(const size_t& imageIndx)
 
 			new_BottomLeft.setX(new_BottomLeft.x() - 0.8 * textBox.width());
 			new_BottomLeft.setY(new_BottomLeft.y() + 0.8 * textBox.height());
-			
-			
+
+
 			textBox.setBottomLeft(new_BottomLeft);
 			textBox.setTopRight(new_TopRight);
 
@@ -413,41 +415,6 @@ void AnnoVis::highlightUnknowns()
 	redraw(m_currentIndex);
 }
 
-void AnnoVis::getWheelRotation(const QPoint& pos, const QPoint& angle)
-{
-
-	int closestIdx = findClosestEmbryoIndex(pos);
-
-	int idToRelabel = -1;
-
-	if (closestIdx >= 0)
-	{
-		idToRelabel = m_imagesEmbryoBoxes[m_currentIndex][closestIdx].id;
-		float value = m_imagesEmbryoBoxes[m_currentIndex][closestIdx].rotation.z() + angle.y();
-		m_imagesEmbryoBoxes[m_currentIndex][closestIdx].rotation.setZ(float(int(value) % 360));
-		m_imagesEmbryoBoxes[m_currentIndex][closestIdx].isKeyFrame = true;
-		emit(sendRotation(m_imagesEmbryoBoxes[m_currentIndex][closestIdx].rotation));
-		updateRotation(idToRelabel, m_imagesEmbryoBoxes[m_currentIndex][closestIdx].rotation);
- 
-		/*severe = std::max(std::min(severe, 100.0f), 0.0f);
-		for (size_t f = 0; f < m_images2JSONs.size(); f++)
-		{
-			for (auto& embryoBbox : m_imagesEmbryoBoxes[f])
-			{
-
-				if (idToRelabel == embryoBbox.id)
-				{
-					embryoBbox.severe = severe;
-				}
-
-			}
-		}
-		*/
-	}
-
-	redraw(m_currentIndex);
-}
-
 
 void AnnoVis::swapRotation(const QPoint& pos)
 {
@@ -469,6 +436,25 @@ void AnnoVis::swapRotation(const QPoint& pos)
 
 	redraw(m_currentIndex);
 }
+
+void AnnoVis::cleanRotation(const int embryoID)
+{
+	for (size_t f = 0; f < m_images2JSONs.size(); f++)
+	{
+		for (auto& embryoBbox : m_imagesEmbryoBoxes[f])
+		{
+			if (embryoID == embryoBbox.id)
+			{
+				embryoBbox.isKeyFrame = false;
+				embryoBbox.isRotated = false;
+				embryoBbox.rotation = QVector3D(0, 0, 0);
+			}
+
+		}
+	}
+
+}
+
 void AnnoVis::updateRotation(const int embryoID, const QVector3D& rotation)
 {
 
@@ -570,7 +556,7 @@ void AnnoVis::setRotation(const QVector3D& rotation)
 	// rotations are different
 
 	int idToRelabel = -1;
-	if (idsToSetRotation.size() > 1)
+	if (idsToSetRotation.size() != 1)
 	{
 		idsToSetRotation.clear();
 	}
@@ -885,36 +871,6 @@ void AnnoVis::setConfident(const bool& confident)
 }
 
 
-int AnnoVis::findClosestEmbryoIndex(const QPoint& pos)
-{
-
-	if (m_imagesEmbryoBoxes.size() == 0)
-	{
-		return -1;
-	}
-
-	double distance = DBL_MAX;
-	int closestIdx = -1;
-
-	for (size_t i = 0; i < m_imagesEmbryoBoxes[m_currentIndex].size(); ++i)
-	{
-		bool isInside = false;
-		const auto& imageEmbryoBoxes = m_imagesEmbryoBoxes[m_currentIndex][i];
-
-		const double current_distance = std::pow(std::pow(imageEmbryoBoxes.bbox.center().x() - pos.x(), 2) +
-			std::pow(imageEmbryoBoxes.bbox.center().y() - pos.y(), 2), 0.5);
-
-		isInside = imageEmbryoBoxes.bbox.contains(pos);
-
-		if (isInside && current_distance < distance)
-		{
-			distance = current_distance;
-			closestIdx = static_cast<int>(i);
-		}
-	}
-	return closestIdx;
-}
-
 
 void AnnoVis::wheelPress(const QPoint& pos)
 {
@@ -933,7 +889,6 @@ void AnnoVis::wheelPress(const QPoint& pos)
 	{
 		for (auto& embryoBbox : m_imagesEmbryoBoxes[f])
 		{
-
 			if (idToRelabel == embryoBbox.id)
 			{
 				if (f < m_currentIndex)
@@ -1026,5 +981,114 @@ void AnnoVis::getRotation()
 		}
 	}
 	this->redraw(m_currentIndex);
+
+}
+
+int AnnoVis::findClosestEmbryoIndex(const QPoint& pos)
+{
+
+	if (m_imagesEmbryoBoxes.size() == 0)
+	{
+		return -1;
+	}
+
+	double distance = DBL_MAX;
+	int closestIdx = -1;
+
+	for (size_t i = 0; i < m_imagesEmbryoBoxes[m_currentIndex].size(); ++i)
+	{
+		bool isInside = false;
+		const auto& imageEmbryoBoxes = m_imagesEmbryoBoxes[m_currentIndex][i];
+
+		const double current_distance = std::pow(std::pow(imageEmbryoBoxes.bbox.center().x() - pos.x(), 2) +
+			std::pow(imageEmbryoBoxes.bbox.center().y() - pos.y(), 2), 0.5);
+
+		isInside = imageEmbryoBoxes.bbox.contains(pos);
+
+		if (isInside && current_distance < distance)
+		{
+			distance = current_distance;
+			closestIdx = static_cast<int>(i);
+		}
+	}
+	return closestIdx;
+
+}
+
+
+void AnnoVis::getWheelRotation(const QPoint& pos, const QPoint& angle)
+{
+
+	int closestIdx = findClosestEmbryoIndex(pos);
+
+	int idToRelabel = -1;
+
+	if (closestIdx >= 0)
+	{
+		idToRelabel = m_imagesEmbryoBoxes[m_currentIndex][closestIdx].id;
+		float value = m_imagesEmbryoBoxes[m_currentIndex][closestIdx].rotation.z() + angle.y();
+		m_imagesEmbryoBoxes[m_currentIndex][closestIdx].rotation.setZ(float(int(value) % 360));
+		m_imagesEmbryoBoxes[m_currentIndex][closestIdx].isKeyFrame = true;
+		emit(sendRotation(m_imagesEmbryoBoxes[m_currentIndex][closestIdx].rotation));
+		updateRotation(idToRelabel, m_imagesEmbryoBoxes[m_currentIndex][closestIdx].rotation);
+
+		/*severe = std::max(std::min(severe, 100.0f), 0.0f);
+		for (size_t f = 0; f < m_images2JSONs.size(); f++)
+		{
+			for (auto& embryoBbox : m_imagesEmbryoBoxes[f])
+			{
+
+				if (idToRelabel == embryoBbox.id)
+				{
+					embryoBbox.severe = severe;
+				}
+
+			}
+		}
+		*/
+	}
+
+	redraw(m_currentIndex);
+}
+
+
+void AnnoVis::recieveKeyMouseEvent(const QKeyEvent* p, const QPoint& pos)
+{
+
+	int closestIdx = findClosestEmbryoIndex(pos);
+	if (closestIdx < 0)
+	{
+		return;
+	}
+
+	int idToRelabel = -1;
+	idToRelabel = m_imagesEmbryoBoxes[m_currentIndex][closestIdx].id;
+	float step = 0;
+	if (p->key() == Qt::Key::Key_Escape)
+	{
+		cleanRotation(idToRelabel);
+		emit(sendRotation(QVector3D(0, 0, 0)));
+		redraw(m_currentIndex);
+		return;
+	}
+	
+	if (p->key() == Qt::Key::Key_Right)
+	{
+		step = 10;
+	}
+	if (p->key() == Qt::Key::Key_Left)
+	{
+		step = -10;
+	}
+	if (closestIdx >= 0)
+	{
+		float value = m_imagesEmbryoBoxes[m_currentIndex][closestIdx].rotation.z() + step;
+		m_imagesEmbryoBoxes[m_currentIndex][closestIdx].rotation.setZ(float(int(value) % 360));
+		m_imagesEmbryoBoxes[m_currentIndex][closestIdx].isKeyFrame = true;
+		emit(sendRotation(m_imagesEmbryoBoxes[m_currentIndex][closestIdx].rotation));
+		updateRotation(idToRelabel, m_imagesEmbryoBoxes[m_currentIndex][closestIdx].rotation);
+	}
+
+	redraw(m_currentIndex);
 
 }

@@ -327,8 +327,13 @@ void AnnoWidget::wheelEvent(QWheelEvent* event)
     emit sendWheelRotation(resizedPos, event->angleDelta() / 8 / 3);
 }
 
-/*
-void AnnoWidget::keyPressEvent( QKeyEvent* e)
+
+
+void AnnoWidget::keyEvent( QKeyEvent* e)
 {
-    emit(sendKey(e));
-}*/
+    QPoint pos = QCursor::pos();
+    QPoint localPos = QWidget::mapFromGlobal(QCursor::pos());
+    const QPoint resizedPos = QPoint(localPos.x() * (static_cast<double>(m_img.width()) / static_cast<double>(this->width())),
+        localPos.y()* (static_cast<double>(m_img.height()) / static_cast<double>(this->height())));
+    emit(sendKeyAndMousePos(e, resizedPos));
+}

@@ -15,13 +15,14 @@
 #include <QVector3D>
 #include <QObject>
 #include <AnnoVisEmbryoBox.h>
+#include <QKeyEvent>
 
 #define ENABLE_SWITCH_LOGIC 1
 
 class AnnoVis : public QObject
 {
+	
 	Q_OBJECT
-
 	
 private:
 
@@ -46,7 +47,7 @@ private:
 	int findClosestEmbryoIndex(const QPoint& p);
 
 	void updateRotation(const int embryoID, const QVector3D& rotation);
-
+	void cleanRotation(const int embryoID);
 public:
 
 	AnnoVis(QObject* parent = nullptr);
@@ -73,11 +74,12 @@ public slots:
 	void swapRotation(const QPoint& pos);
 
 	void wheelPress(const QPoint& pos);
-	
+
 
 	void changeSingleEmbryoConfidence(const QPoint& pos);
 
 	void setRotation(const QVector3D& rotation);
+	void recieveKeyMouseEvent(const QKeyEvent* p, const QPoint& pos);
 
 	void setConcentration(const int& concentration);
 	void setNewClass(const int& index);

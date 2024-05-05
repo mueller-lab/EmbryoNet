@@ -42,7 +42,6 @@ void MainWindow::allocate()
 	m_sliderButton = new QHBoxLayout;
 	m_startSliderLayout = new QVBoxLayout;
 	m_rightLayout = new QVBoxLayout;
-
 	m_select_all_shortcut = new QShortcut(QKeySequence("Ctrl+A"), this);
 	m_unselect_all_shortcut = new QShortcut(QKeySequence("Ctrl+Z"), this);
 	m_highlight_unknown_shortcut = new QShortcut(QKeySequence("Ctrl+Q"), this);
@@ -54,11 +53,16 @@ void MainWindow::allocate()
 
 void MainWindow::keyPressEvent(QKeyEvent* e)
 {
-
 	int key = e->key();
+
+	if ((key == Qt::Key::Key_Left)||(key == Qt::Key::Key_Right))
+	{
+		sendKey(e);
+	}
 
 	switch (e->key()) {
 	case Qt::Key_Escape:
+		sendKey(e);
 		emit sendEscape();
 		break;
 
@@ -141,15 +145,6 @@ void MainWindow::keyPressEvent(QKeyEvent* e)
 	case Qt::Key_Minus:
 		emit sendClass(10); //RA (A)
 		break;
-		//case Qt::Key_A:
-		//    emit sendClass(10); //RA (A)
-		//    break;
-
-		//case Qt::Key_R:
-		//    emit sendRotation();
-		//    break;
-
-
 
 
 	case Qt::Key_A:
@@ -169,6 +164,12 @@ void MainWindow::keyPressEvent(QKeyEvent* e)
 	case Qt::Key_Z:
 		emit unselectAll();
 		break;
+
+	case Qt::LeftArrow:
+		break;
+	case Qt::RightArrow:
+		break;
+
 
 
 	default:
@@ -227,6 +228,7 @@ void MainWindow::chooseDirectory()
 void MainWindow::connectInternal()
 {
 
+
 	QObject::connect(
 		m_select_all_shortcut,
 		&QShortcut::activated,
@@ -277,6 +279,7 @@ void MainWindow::connectInternal()
 		this,
 		&MainWindow::chooseDirectory
 	);
+
 	QObject::connect
 	(
 		m_saveAction,
@@ -320,6 +323,24 @@ void MainWindow::connectInternal()
 		this,
 		&MainWindow::sendLeftClick
 	);
+	
+	QObject::connect
+	(
+		this,
+		&MainWindow::sendKey,
+		m_annoWidget,
+		&AnnoWidget::keyEvent
+	);
+
+
+	QObject::connect
+	(
+		m_annoWidget,
+		&AnnoWidget::sendKeyAndMousePos,
+		this,
+		&MainWindow::sendKeyAndMousePos
+	);
+
 
 	QObject::connect
 	(

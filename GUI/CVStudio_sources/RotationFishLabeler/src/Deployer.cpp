@@ -101,6 +101,7 @@ void Deployer::connect()
 		&AnnoVis::setHighlighted
 	);
 
+
 	QObject::connect(
 		m_mainWindow,
 		&MainWindow::wheelPress,
@@ -182,6 +183,13 @@ void Deployer::connect()
 		&AnnoVis::sendRotation, 
 		m_mainWindow,
 		&MainWindow::getRotation
+	);
+
+	QObject::connect(
+		m_mainWindow,
+		&MainWindow::sendKeyAndMousePos,
+		m_annovis,
+		&AnnoVis::recieveKeyMouseEvent
 	);
 
 }

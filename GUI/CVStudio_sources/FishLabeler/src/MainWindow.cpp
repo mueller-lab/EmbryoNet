@@ -210,6 +210,7 @@ void MainWindow::connectInternal()
 		&MainWindow::sendLeftClick
 	);
 
+
 	QObject::connect
 	(
 		this->m_picture,

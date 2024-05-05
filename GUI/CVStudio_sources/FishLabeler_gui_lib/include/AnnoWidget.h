@@ -16,7 +16,7 @@
 #include <QOpenGLVertexArrayObject>
 #include <QOpenGLBuffer>
 #include <QWheelEvent>
-
+#include <QKeyEvent>
 
 class AnnoWidget: public QOpenGLWidget, protected QOpenGLFunctions
 {
@@ -34,14 +34,22 @@ public:
     void resizeEvent(QResizeEvent* event) override;
     void mouseReleaseEvent(QMouseEvent* event) override;
     void wheelEvent(QWheelEvent* event) override;
-   
+    
+    
+
+public slots:
+    void keyEvent(QKeyEvent* event);
+
 signals:
 
     void sendLeftClick(const QPoint& p);
     void sendWheelRotation(const QPoint& pos, const QPoint angleDelta);
     void wheelPress(const QPoint& p);
     void sendRightClick(const QPoint& p);
-   //void sendKey( const QKeyEvent *p);
+
+    void sendKeyAndMousePos( const QKeyEvent *p, const QPoint& pos);
+
+
 
 
 

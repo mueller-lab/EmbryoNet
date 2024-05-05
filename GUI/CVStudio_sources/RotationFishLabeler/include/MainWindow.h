@@ -69,21 +69,22 @@ class MainWindow : public QWidget
 	int m_current_idx = -1;
 
 private:
-	void keyPressEvent(QKeyEvent* e);
+	
 
 	void allocate();
 	void draw();
 	void connectInternal();
 
 	void chooseDirectory();
-
+	void keyPressEvent(QKeyEvent* e);
 public:
 
 	MainWindow(QWidget * parent = nullptr); 
 	~MainWindow();
 
 public slots:
-
+	
+	
 	void setStringList(const QStringList& stringList);
 	void showPicture(const QImage& image);
 	void setArrows(const QList<QVector2D>& positions, const QList<QVector3D>& rotations);
@@ -95,7 +96,8 @@ public slots:
 	void getRotation(const QVector3D& rot);
 
 signals:
-	
+	void sendKey(QKeyEvent* p);
+
 	void sendRotation(const QVector3D& rot);
 
 	void sendLeftClick(const QPoint& p);
@@ -107,6 +109,7 @@ signals:
 	void sendRightClick(const QPoint& p);
 	void wheelPress(const QPoint& p);
 	void sendWheelRotation(const QPoint& pos, const QPoint& angle);
+	void sendKeyAndMousePos(const QKeyEvent* p, const QPoint& pos);
 
 	void sendDirectory(const QString& pathToDir);
 	void itemChanged(int i);
