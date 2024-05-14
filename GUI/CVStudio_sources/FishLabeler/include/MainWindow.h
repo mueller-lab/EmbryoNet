@@ -111,10 +111,7 @@ signals:
     void sendRightClick(const QPoint& p);
     void wheelPress(const QPoint& p);
     void sendWheelRotation(const QPoint& pos, const QPoint& angle);
-
     void sendRotationsendRotation();
-
-
     void sendClassChanged(const QString& className, const int& index);
     void sendEscape();
     void sendClass(const int &);

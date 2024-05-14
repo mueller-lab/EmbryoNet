@@ -59,6 +59,10 @@ void MainWindow::keyPressEvent(QKeyEvent* e)
 	{
 		sendKey(e);
 	}
+	if ((key == Qt::Key::Key_Escape) || (key == Qt::Key::Key_Shift))
+	{
+		sendKey(e);
+	}
 
 	switch (e->key()) {
 	case Qt::Key_Escape:

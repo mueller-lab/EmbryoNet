@@ -966,7 +966,7 @@ void AnnoVis::getRotation()
 			{
 				if (id == embryoBbox.id)
 				{
-					embryoBbox.isRotated = !embryoBbox.isRotated;
+					//embryoBbox.isRotated = !embryoBbox.isRotated;
 					embryoBbox.isKeyFrame = true;
 				}
 			}
@@ -1026,7 +1026,7 @@ void AnnoVis::getWheelRotation(const QPoint& pos, const QPoint& angle)
 	if (closestIdx >= 0)
 	{
 		idToRelabel = m_imagesEmbryoBoxes[m_currentIndex][closestIdx].id;
-		float value = m_imagesEmbryoBoxes[m_currentIndex][closestIdx].rotation.z() + angle.y();
+		float value = m_imagesEmbryoBoxes[m_currentIndex][closestIdx].rotation.z() - angle.y();
 		m_imagesEmbryoBoxes[m_currentIndex][closestIdx].rotation.setZ(float(int(value) % 360));
 		m_imagesEmbryoBoxes[m_currentIndex][closestIdx].isKeyFrame = true;
 		emit(sendRotation(m_imagesEmbryoBoxes[m_currentIndex][closestIdx].rotation));
@@ -1060,7 +1060,6 @@ void AnnoVis::recieveKeyMouseEvent(const QKeyEvent* p, const QPoint& pos)
 	{
 		return;
 	}
-
 	int idToRelabel = -1;
 	idToRelabel = m_imagesEmbryoBoxes[m_currentIndex][closestIdx].id;
 	float step = 0;
@@ -1071,6 +1070,19 @@ void AnnoVis::recieveKeyMouseEvent(const QKeyEvent* p, const QPoint& pos)
 		redraw(m_currentIndex);
 		return;
 	}
+
+	if (p->key() == Qt::Key::Key_Shift)
+	{
+		auto embryoBbox = &m_imagesEmbryoBoxes[m_currentIndex][closestIdx];
+		embryoBbox->isKeyFrame = true;
+		embryoBbox->isRotated = false;
+		embryoBbox->rotation = QVector3D(0, 0, 0);
+		updateRotation(idToRelabel, m_imagesEmbryoBoxes[m_currentIndex][closestIdx].rotation);
+		emit(sendRotation(QVector3D(0, 0, 0)));
+		redraw(m_currentIndex);
+		return;
+	}
+
 	
 	if (p->key() == Qt::Key::Key_Right)
 	{

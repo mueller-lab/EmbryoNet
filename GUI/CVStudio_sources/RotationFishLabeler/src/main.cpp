@@ -8,10 +8,8 @@
 
 
 #include <QApplication>
-
 #include "MainWindow.h"
 #include "Deployer.h"
-
 #include <iostream>
 
 int main(int argc, char **argv)
