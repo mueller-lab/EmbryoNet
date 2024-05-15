@@ -5,6 +5,7 @@
 #define MyAppVersion "1.0"
 #define MyAppPublisher "Computer VIsion Studio"
 #define MyAppExeName "RotationFishLabeler.exe"
+#define EmbryoDepsPath GetEnv('EMBRYO_DEPENDENTS')
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application. Do not use the same AppId value in installers for other applications.
@@ -30,14 +31,14 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "C:\work\VMShared\Win10Pro\RotationFishLabeler\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\work\VMShared\Win10Pro\RotationFishLabeler\Qt5Core.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\work\VMShared\Win10Pro\RotationFishLabeler\Qt5Gui.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\work\VMShared\Win10Pro\RotationFishLabeler\Qt5Widgets.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\work\VMShared\Win10Pro\RotationFishLabeler\imageformats\*"; DestDir: "{app}\imageformats"; Flags: ignoreversion
-Source: "C:\work\VMShared\Win10Pro\RotationFishLabeler\platforms\*"; DestDir: "{app}\platforms\"; Flags: ignoreversion
-Source: "C:\work\VMShared\Win10Pro\RotationFishLabeler\shaders\*"; DestDir: "{app}\shaders\"; Flags: ignoreversion
-Source: "C:\work\VMShared\Win10Pro\VC\VC_redist.x64.exe"; DestDir: {tmp}; Flags: deleteafterinstall
+Source: "../../../build/CVStudio_sources/RotationFishLabeler/Release/{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#EmbryoDepsPath}/Qt/msvc2017_64/bin/Qt5Core.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#EmbryoDepsPath}/Qt/msvc2017_64/bin/Qt5Gui.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#EmbryoDepsPath}/Qt/msvc2017_64/bin/Qt5Widgets.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#EmbryoDepsPath}/Qt/msvc2017_64/plugins/imageformats/*.dll"; DestDir: "{app}\imageformats"; Flags: ignoreversion
+Source: "{#EmbryoDepsPath}/Qt/msvc2017_64/plugins/platforms/*.dll"; DestDir: "{app}\platforms\"; Flags: ignoreversion
+Source: "../../shaders/*"; DestDir: "{app}\shaders\"; Flags: ignoreversion
+Source: "{#EmbryoDepsPath}/Installers_Resources/VC/VC_redist.x64.exe"; DestDir: {tmp}; Flags: deleteafterinstall
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Run]
