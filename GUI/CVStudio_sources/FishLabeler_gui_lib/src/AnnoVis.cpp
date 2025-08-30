@@ -197,7 +197,7 @@ void AnnoVis::redraw(const size_t& imageIndx)
 		auto severePos = embryoBox.bbox;
 		severePos.moveTo(severePos.x(), severePos.y() + 20 * penWidth);
 #if NOT TEST_MODE 
-		drawText(&img, severePos, embryoBox.color, pen, embryoBox.severe);
+		//drawText(&img, severePos, embryoBox.color, pen, embryoBox.severe);
 #endif		
         counters[m_classNameID[embryoBox.className]]++;
 
@@ -541,19 +541,10 @@ bool AnnoVis::isPossible(const QString oldClass, const QString newClass)
 
 void AnnoVis::createPossibleTransitions()
 {
-	m_possibleTransitions["UNKNOWN"] = { "BMP",  "NODAL", "NORMAL", "UNKNOWN", "CUT", "BOOM","WNT", "FGF", "SHH", "PCP", "RA" };
-	m_possibleTransitions["BMP"] = { "BMP", "CUT", "BOOM" };
-	m_possibleTransitions["NODAL"] = { "NODAL", "CUT", "BOOM" };
-	m_possibleTransitions["NORMAL"] = { "NORMAL",  "CUT", "BOOM" };
-	m_possibleTransitions["CUT"] = { "BMP",  "NODAL", "NORMAL", "UNKNOWN", "CUT", "BOOM" };
-	m_possibleTransitions["BOOM"] = { "BOOM", "CUT" };
-
-
-	m_possibleTransitions["WNT"] = { "WNT", "BOOM", "CUT" };
-	m_possibleTransitions["FGF"] = { "FGF", "BOOM", "CUT" };
-	m_possibleTransitions["SHH"] = { "SHH", "BOOM", "CUT" };
-	m_possibleTransitions["PCP"] = { "PCP", "BOOM", "CUT" };
-	m_possibleTransitions["RA"] = { "RA" , "BOOM", "CUT" };
+	m_possibleTransitions["UNKNOWN"] = { "UNKNOWN", "WNT_PLUS",  "NORMAL", "BOOM" };
+	m_possibleTransitions["WNT_PLUS"] = { "WNT_PLUS", "BOOM" };
+	m_possibleTransitions["NORMAL"] = { "NORMAL",  "BOOM" };
+	m_possibleTransitions["BOOM"] = { "BOOM" };
 }
 
 void AnnoVis::clearTracks()

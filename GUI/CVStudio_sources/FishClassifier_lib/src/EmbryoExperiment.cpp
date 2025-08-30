@@ -22,8 +22,15 @@ EmbryoExperiment::EmbryoExperiment(const nlohmann::json& config)
 
     auto logicConfig = config["logic"];
     logicConfig["classes"] = config["classes"];
-    m_logic.reset(new EmbryoLogic(logicConfig));
-
+    try
+    {
+        m_logic.reset(new EmbryoLogic(logicConfig));
+    }
+    catch (const std::exception& e)
+    {
+        std::string s = e.what();
+        s;
+    }
     m_classifier->setDefaultClass(m_logic->getClassIdFromName(m_classifier->getDefaultClassName()));
 
     const auto& trackerConfig = config["tracker"];

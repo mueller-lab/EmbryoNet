@@ -17,7 +17,7 @@
 #include <opencv2/core.hpp>
 #include <Bbox.hpp>
 
-#define WITH_ONNXRUNTIME 0
+#define WITH_ONNXRUNTIME 1
 
 #if WITH_ONNXRUNTIME
 #include "onnxruntime_c_api.h"
