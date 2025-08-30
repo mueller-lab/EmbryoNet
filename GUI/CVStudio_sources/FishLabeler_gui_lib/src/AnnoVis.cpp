@@ -15,7 +15,7 @@
 #include <QMessageBox>
 
 #include <set>
-#define TEST_MODE 1
+#define TEST_MODE 0
 namespace
 {
 

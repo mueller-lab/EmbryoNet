@@ -15,7 +15,7 @@
 
 #include <QObject>
 
-#define ENABLE_SWITCH_LOGIC 0
+#define ENABLE_SWITCH_LOGIC 1
 
 class AnnoVis : public QObject
 {
