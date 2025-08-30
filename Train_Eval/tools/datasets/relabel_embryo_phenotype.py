@@ -17,11 +17,11 @@ def main():
     parser.add_argument('--path_to_session',"-p", type=str)
     parser.add_argument('--labeler_name', "-ln",type=str)
     parser.add_argument('--updated_annotation_name',"-uan", type=str)
-    parser.add_argument('--start',"-st", type=int, default=640)
+    parser.add_argument('--start',"-st", type=int, default=50)
     parser.add_argument('--severe',"-se", type=int, default=100)
     parser.add_argument('--class_name',"-cn", type=str, default="NORMAL")
     parser.add_argument('--ignore_class', "-ic",  nargs="+", default=["BOOM", "CUT"])
-    parser.add_argument('--timestamp_prefix', "-tp", type = str, default= "LO")
+    parser.add_argument('--timestamp_prefix', "-tp", type = str, default= "T")
     args = parser.parse_args()
     class_name = args.class_name.upper()
     ignore_class_names = [ignore_class.upper() for ignore_class in args.ignore_class]
