@@ -72,8 +72,16 @@ void EmbryoExperimentRunner::construct(const nlohmann::json& config)
 			return (hh * 60.0f + mm) / (24.0f * 60.0f);
 		};
 
-		float startTime = timeStrToFloat(config["StartPoint"].get<std::string>());
-		float stopTime = timeStrToFloat(config["StopPoint"].get<std::string>());
+		float startTime = 0.0f;
+		if (config.count("StartPoint"))
+		{
+			startTime = timeStrToFloat(config["StartPoint"].get<std::string>());
+		}
+		float stopTime = 0.0f;
+		if (config.count("StopPoint"))
+		{
+			stopTime = timeStrToFloat(config["StopPoint"].get<std::string>());
+		}
 
 		if (stopTime >= startTime)
 		{

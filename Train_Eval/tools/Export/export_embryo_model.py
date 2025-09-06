@@ -59,7 +59,7 @@ def run_export(path_to_model,
                       model_name +
                       '_batch_' + batch_str +'.onnx')
     torch.onnx.export(newModel, (dummy_input, t_for_conv, t_for_fc), path_to_output_model,
-                      verbose=True, input_names=input_names, output_names=output_names)
+                      verbose=True, opset_version=15, input_names=input_names, output_names=output_names)
 
 
 if __name__ == '__main__':
